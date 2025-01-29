@@ -55,7 +55,7 @@ To set up the project, follow these steps:
     Instructions in the file: [IsaacSim-Setup_Guide](https://github.com/pietrodardano/RL_Dog/blob/main/SETUP_GUIDE.md) or TODO_Gymnasium-Setup_Guide
 1. Clone the repository:
    ```
-   git clone https://github.com/PietroDrd/RL_Dog.git
+   git clone https://github.com/pietrodardano/RL_Dog.git
    ```
 
 
