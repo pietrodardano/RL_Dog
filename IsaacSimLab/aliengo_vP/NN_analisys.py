@@ -71,7 +71,6 @@ saved in:  RL_Dog/models/FULL_STATE__NN_v3.pt
 
 
 
-
 ######### HERE BELOW ARE PROVIDED 2 SIMULATED INPUTS #############
 
 # OBS_original (jessica)
