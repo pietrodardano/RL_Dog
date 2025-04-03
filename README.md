@@ -1,7 +1,13 @@
-# RL_Dog 
+# RL_Dog (Legacy versions: IsaacSim 4.1, IsaacLab 1.1.0)
 Reinforced-Learning for autonomous walking and suddenly-stopping of Legged Robot (AlienGO by Unitree)
 
 Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024
+
+<div align="center"> 
+
+# ! This branch is no longer maintained !
+
+ </div>
 
 ## Methodology
 - **Proximal Policy Optimization (PPO)** 
@@ -12,10 +18,10 @@ Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelpret
 ## Setup
 ### Workstation
 
-[![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
+[![IsaacSim](https://img.shields.io/badge/IsaacSim-4.1-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
 [![Linux platform](https://img.shields.io/badge/platform-linux--64-orange.svg)](https://releases.ubuntu.com/22.04/)
-[![skrl](https://img.shields.io/badge/skrl-1.4.3-green.svg)](https://skrl.readthedocs.io/en/latest/)
+[![skrl](https://img.shields.io/badge/skrl-1.1.0-green.svg)](https://skrl.readthedocs.io/en/latest/)
 
 - **NVIDIA's [Isaac Lab](https://isaac-sim.github.io/IsaacLab/)**:  provides the high-performance simulation environment necessary for training our models. Refer to the [Orbit](https://isaac-orbit.github.io/) and [Isaac Sim](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) pages for more information. <br>
 
