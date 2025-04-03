@@ -1,0 +1,8 @@
+tomli
+ipywidgets==8.1.5
+
+[all]
+robomimic@ git+https://github.com/ARISE-Initiative/robomimic.git
+
+[robomimic]
+robomimic@ git+https://github.com/ARISE-Initiative/robomimic.git
