@@ -4,7 +4,7 @@ Reinforced-Learning for autonomous walking and suddenly-stopping of Legged Robot
 Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024
 
 ## Methodology
-- **Proximal Policy Optimization (PPO)** and **TODO: Constraints as Terminations (CAT)**: For detailed information on these methods, refer to the [research paper](https://arxiv.org/pdf/2403.18765).
+- **Proximal Policy Optimization (PPO)** 
 - **Architecture Inspired by ANYmal (ETH-RSL)**: We modeled our architecture based on the principles outlined in the [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
 - **SKRL**: We utilized the SKRL library to streamline our reinforcement learning implementations. More details can be found in the SKRL [documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
 - **Python + PyTorch**: Our primary programming languages and framework for development and deep learning.
@@ -12,18 +12,26 @@ Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelpret
 ## Setup
 ### Workstation
 
-[![IsaacSim](https://img.shields.io/badge/IsaacSim-4.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
+[![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
 [![Linux platform](https://img.shields.io/badge/platform-linux--64-orange.svg)](https://releases.ubuntu.com/22.04/)
-[![skrl](https://img.shields.io/badge/skrl-1.2.0-green.svg)](https://skrl.readthedocs.io/en/latest/)
+[![skrl](https://img.shields.io/badge/skrl-1.4.3-green.svg)](https://skrl.readthedocs.io/en/latest/)
 
 - **NVIDIA's [Isaac Lab](https://isaac-sim.github.io/IsaacLab/)**:  provides the high-performance simulation environment necessary for training our models. Refer to the [Orbit](https://isaac-orbit.github.io/) and [Isaac Sim](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) pages for more information. <br>
 
-#### Config: 
+#### Config:
+
+##### WS 1
 - CPU: AMD® Ryzen 9 7950x
 - GPU: 2x NVIDIA RTX A6000 Ada Generation, 48Gb GDDR6, 300W
 - RAM: 192Gb
 - OS: Ubuntu 22.04.4 LTS
+
+##### WS 2
+- CPU: Intel Xeon(R) Gold 6226R
+- GPU: NVIDIA RTX A6000, 48Gb GDDR6, 300W
+- RAM: 128Gb
+- OS: Ubuntu 20.04 LTS
 
 Please note that IsaacLab contains many OpenAI Gym and Gymnasium features. It is common to find attributes, methods and classes related to them. <br>
 It contains [RSL_RL](https://github.com/leggedrobotics/rsl_rl/tree/master) too, helpfull framework by ETH for legged robot training.
