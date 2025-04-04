@@ -2,30 +2,30 @@
 import math
 import torch
 
-from omni.isaac.lab.envs     import ManagerBasedEnv, ManagerBasedEnvCfg, ManagerBasedRLEnv, ManagerBasedRLEnvCfg
-from omni.isaac.lab.assets   import ArticulationCfg, AssetBaseCfg
-from omni.isaac.lab.assets   import Articulation
-from omni.isaac.lab.sensors  import ContactSensorCfg, RayCasterCfg, patterns
+from isaaclab.envs     import ManagerBasedEnv, ManagerBasedEnvCfg, ManagerBasedRLEnv, ManagerBasedRLEnvCfg
+from isaaclab.assets   import ArticulationCfg, AssetBaseCfg
+from isaaclab.assets   import Articulation
+from isaaclab.sensors  import ContactSensorCfg, RayCasterCfg, patterns
 
-from omni.isaac.lab.managers import EventTermCfg as EventTerm
-from omni.isaac.lab.managers import ObservationGroupCfg as ObsGroup
-from omni.isaac.lab.managers import ObservationTermCfg as ObsTerm
-from omni.isaac.lab.managers import RewardTermCfg as RewTerm
-from omni.isaac.lab.managers import SceneEntityCfg
-from omni.isaac.lab.managers import TerminationTermCfg as DoneTerm
+from isaaclab.managers import EventTermCfg as EventTerm
+from isaaclab.managers import ObservationGroupCfg as ObsGroup
+from isaaclab.managers import ObservationTermCfg as ObsTerm
+from isaaclab.managers import RewardTermCfg as RewTerm
+from isaaclab.managers import SceneEntityCfg
+from isaaclab.managers import TerminationTermCfg as DoneTerm
 
-from omni.isaac.lab.utils.noise  import AdditiveUniformNoiseCfg as Unoise
-from omni.isaac.lab.utils        import configclass
-from omni.isaac.lab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR
-from omni.isaac.lab.scene        import InteractiveSceneCfg
-from omni.isaac.lab.terrains     import TerrainImporterCfg
+from isaaclab.utils.noise  import AdditiveUniformNoiseCfg as Unoise
+from isaaclab.utils        import configclass
+from isaaclab.utils.assets import ISAACNUCLEUS_DIR, ISAACAB_NUCLEUS_DIR
+from isaaclab.scene        import InteractiveSceneCfg
+from isaaclab.terrains     import TerrainImporterCfg
 
-from omni.isaac.lab.terrains.config.rough   import ROUGH_TERRAINS_CFG
-from omni.isaac.lab_assets.unitree          import AliengoCFG_Color, AliengoCFG_Black #modified in IsaacLab_
+from isaaclab.terrains.config.rough   import ROUGH_TERRAINS_CFG
+from isaaclab_assets.unitree          import AliengoCFG_Color, AliengoCFG_Black #modified in Isaacab_
 
-import omni.isaac.lab.sim        as sim_utils
-import omni.isaac.lab.utils.math as math_utils
-import omni.isaac.lab_tasks.manager_based.locomotion.velocity.mdp as mdp            # contains omni.isaac.lab.envs.mdp
+import isaaclab.sim        as sim_utils
+import isaaclab.utils.math as math_utils
+import isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp            # contains omni.isaac.lab.envs.mdp
 
 ###-------------------------------------------------------------------------------------###
 

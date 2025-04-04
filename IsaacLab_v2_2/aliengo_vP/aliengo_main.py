@@ -12,6 +12,9 @@ This script demonstrates the environment for a quadruped robot AlienGo.
     cd IsaacLab_
     ./isaaclab.sh -p /home/rl_sim/RL_Dog/IsaacLab_v1_1/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
     
+    conda activate isaacenv
+    cd
+    cd IsaacLab/
     ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/IsaacLab_v1_1/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
 
 
@@ -42,9 +45,9 @@ args_cli = parser.parse_args()
 app_launcher = AppLauncher(args_cli)
 simulation_app = app_launcher.app
 
-from omni.isaac.lab.envs        import ManagerBasedRLEnv
-from omni.isaac.lab.envs        import ManagerBasedRLEnvCfg
-from omni.isaac.lab.utils.dict  import print_dict
+from isaaclab.envs        import ManagerBasedRLEnv
+from isaaclab.envs        import ManagerBasedRLEnvCfg
+from isaaclab.utils.dict  import print_dict
 
 from aliengo_env import AliengoEnvCfg
 from aliengo_ppo import PPO_v1      # use aliengo_ppo_OLD if aliengo_ppo not working

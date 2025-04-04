@@ -28,7 +28,7 @@ from skrl.utils import set_seed
 set_seed(42)  # e.g. `set_seed(42)` for fixed seed
 
 ### ISAACLAB CLASSES ###
-from omni.isaac.lab.envs     import ManagerBasedRLEnv
+from isaaclab.envs     import ManagerBasedRLEnv
 
 
 # define shared model (stochastic and deterministic models) using mixins
