@@ -4,7 +4,7 @@ import torch
 
 from isaaclab.envs     import ManagerBasedEnv, ManagerBasedEnvCfg, ManagerBasedRLEnv, ManagerBasedRLEnvCfg
 from isaaclab.assets   import ArticulationCfg, AssetBaseCfg
-from isaaclab.assets   import Articulation
+from isaaclab.assets   import Articulation, RigidObject
 from isaaclab.sensors  import ContactSensorCfg, RayCasterCfg, patterns
 
 from isaaclab.managers import EventTermCfg as EventTerm
@@ -16,16 +16,15 @@ from isaaclab.managers import TerminationTermCfg as DoneTerm
 
 from isaaclab.utils.noise  import AdditiveUniformNoiseCfg as Unoise
 from isaaclab.utils        import configclass
-from isaaclab.utils.assets import ISAACNUCLEUS_DIR, ISAACAB_NUCLEUS_DIR
 from isaaclab.scene        import InteractiveSceneCfg
 from isaaclab.terrains     import TerrainImporterCfg
 
-from isaaclab.terrains.config.rough   import ROUGH_TERRAINS_CFG
-from isaaclab_assets.unitree          import AliengoCFG_Color, AliengoCFG_Black #modified in Isaacab_
+from isaaclab.terrains.config.rough             import ROUGH_TERRAINS_CFG
+from isaaclab.isaaclab_assets.robots.unitree    import AliengoCFG_Color, AliengoCFG_Black #modified in Isaacab_
 
 import isaaclab.sim        as sim_utils
 import isaaclab.utils.math as math_utils
-import isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp            # contains omni.isaac.lab.envs.mdp
+import isaaclab.isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp            # contains omni.isaac.lab.envs.mdp
 
 ###-------------------------------------------------------------------------------------###
 
@@ -98,12 +97,9 @@ class BaseSceneCfg(InteractiveSceneCfg):
 
     # LIGHTS
 
-    sky_light = AssetBaseCfg(
-        prim_path="/World/skyLight",
-        spawn=sim_utils.DomeLightCfg(
-            intensity=750.0,
-            texture_file=f"{ISAAC_NUCLEUS_DIR}/Materials/Textures/Skies/PolyHaven/kloofendal_43d_clear_puresky_4k.hdr",
-        ),
+    dome_light = AssetBaseCfg(
+        prim_path="/World/DomeLight",
+        spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=500.0),
     )
 
 ######### MDP - RL #########
@@ -229,8 +225,7 @@ class EventCfg:
 # Available strings: ['base', 'FL_hip', 'FL_thigh', 'FL_calf', 'FR_hip', 'FR_thigh', 'FR_calf', 
 #                             'RL_hip', 'RL_thigh', 'RL_calf', 'RR_hip', 'RR_thigh', 'RR_calf']
 
-import torch
-from omni.isaac.lab.assets import Articulation, RigidObject
+
 def height_goal(
     env: ManagerBasedRLEnv, target_height: float, allowance_radius: float, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot")
 ) -> torch.Tensor:

@@ -15,7 +15,7 @@ This script demonstrates the environment for a quadruped robot AlienGo.
     conda activate isaacenv
     cd
     cd IsaacLab/
-    ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/IsaacLab_v1_1/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
+    ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
 
 
 Launch Isaac Sim Simulator first.
@@ -24,7 +24,7 @@ Launch Isaac Sim Simulator first.
 HEADLESS = 1
 
 # from omni.isaac.lab.app import AppLauncher
-from source.isaaclab.isaaclab.app import AppLauncher
+from isaaclab.app import AppLauncher
 
 import argparse
 parser = argparse.ArgumentParser(description='AlienGo_vP Environment Configuration')
