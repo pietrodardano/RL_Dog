@@ -12,7 +12,6 @@ from colorama import Fore, Style
 
 from skrl.agents.torch.ppo import PPO, PPO_DEFAULT_CONFIG
 from skrl.envs.wrappers.torch import Wrapper, wrap_env
-        # equal to --> from omni.isaac.lab_tasks.utils.wrappers.skrl import SkrlVecEnvWrapper
 
 from skrl.resources.preprocessors.torch import RunningStandardScaler
 from skrl.resources.schedulers.torch import KLAdaptiveRL
@@ -136,7 +135,7 @@ class PPO_v1:
             "state_preprocessor_kwargs": {"size": self.env.observation_space, "device": self.device},
             "value_preprocessor": RunningStandardScaler,
             "value_preprocessor_kwargs": {"size": 1, "device": self.device},
-            "experiment": {"directory": "/home/rl_sim/RL_Dog/runs", "store_separately": True}
+            "experiment": {"directory": "/home/robotac22/RL_Dog/runs", "store_separately": True}
         }
 
         base_name = "AlienGo_vP_stoptry"
@@ -219,7 +218,7 @@ class PPO_v1:
     def _setup_experiment_directory(self, training_type):
         experiment_name = "AlienGo_vP_stoptry"
         timestamp = datetime.datetime.now().strftime("%d_%m_%H:%M")
-        directory = f"/home/rl_sim/RL_Dog/runs/{experiment_name}_{timestamp}"
+        directory = f"/home/robotac22/RL_Dog/runs/{experiment_name}_{timestamp}"
         try:
             os.makedirs(directory, exist_ok=True)
         except Exception as e:

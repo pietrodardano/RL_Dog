@@ -15,7 +15,11 @@ This script demonstrates the environment for a quadruped robot AlienGo.
     conda activate isaacenv
     cd
     cd IsaacLab/
+
+    ./isaaclab.sh -p /home/robotac22/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
+
     ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
+
 
 
 Launch Isaac Sim Simulator first.
@@ -23,7 +27,6 @@ Launch Isaac Sim Simulator first.
 
 HEADLESS = 1
 
-# from omni.isaac.lab.app import AppLauncher
 from isaaclab.app import AppLauncher
 
 import argparse
@@ -58,7 +61,7 @@ import datetime
 import gymnasium as gym
 from colorama import Fore, Style
 
-import tensorboard
+# import tensorboard
 
 """
 cmd -->     tensorboard --logdir=/home/rl_sim/RL_Dog/runs    (SERVER)
@@ -72,7 +75,7 @@ def main():
 
     gym.register(
         id=args_cli.task,
-        entry_point="omni.isaac.lab.envs:ManagerBasedRLEnv",
+        entry_point="isaaclab.envs:ManagerBasedRLEnv",
         kwargs={'cfg': AliengoEnvCfg}
     )
 
@@ -84,7 +87,7 @@ def main():
         if args_cli.video:
             env = gym.make(args_cli.task, cfg=env_cfg, render_mode="rgb_array" if args_cli.video else None)
             timestamp = datetime.datetime.now().strftime("%d_%m_%H:%M")
-            log_dir = f"/home/rl_sim/RL_Dog/runs/AlienGo_vP_stoptry_{timestamp}/"
+            log_dir = f"/home/robotac22/RL_Dog/runs/AlienGo_vP_stoptry_{timestamp}/"
             os.makedirs(log_dir, exist_ok=True)
             video_kwargs = {
                 "video_folder": os.path.join(log_dir, "videos"),

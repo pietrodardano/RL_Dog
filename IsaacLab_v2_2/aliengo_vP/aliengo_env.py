@@ -20,11 +20,11 @@ from isaaclab.scene        import InteractiveSceneCfg
 from isaaclab.terrains     import TerrainImporterCfg
 
 from isaaclab.terrains.config.rough             import ROUGH_TERRAINS_CFG
-from isaaclab.isaaclab_assets.robots.unitree    import AliengoCFG_Color, AliengoCFG_Black #modified in Isaacab_
+from isaaclab_assets.robots.unitree    import AliengoCFG_Color, AliengoCFG_Black #modified in Isaacab_
 
 import isaaclab.sim        as sim_utils
 import isaaclab.utils.math as math_utils
-import isaaclab.isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp            # contains omni.isaac.lab.envs.mdp
+import isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp
 
 ###-------------------------------------------------------------------------------------###
 
@@ -101,6 +101,14 @@ class BaseSceneCfg(InteractiveSceneCfg):
         prim_path="/World/DomeLight",
         spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=500.0),
     )
+    
+    cfg_light_distant = sim_utils.DistantLightCfg(
+        intensity=3000.0,
+        color=(0.75, 0.75, 0.75),
+    )
+    cfg_light_distant.func("/World/lightDistant", cfg_light_distant, translation=(1, 0, 10))
+
+
 
 ######### MDP - RL #########
 
