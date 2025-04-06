@@ -1,7 +1,8 @@
 import os
 import datetime
 import inspect
-import coloramas
+
+from colorama import Fore, Style
 
 import torch
 import torch.nn as nn
@@ -42,7 +43,7 @@ class Shared(GaussianMixin, DeterministicMixin, Model):
         """
 
         print(Fore.BLUE + f"[ALIENGO-PPO] Observation Space: {self.num_observations}, Action Space: {self.num_actions}" + Style.RESET_ALL)
-        
+
         # USE THIS TO PRINT LAYER BY LAYER , NEED TO TRAIN 
         self.l1 = nn.Linear(self.num_observations, 256)
         self.l2 = nn.ELU()
