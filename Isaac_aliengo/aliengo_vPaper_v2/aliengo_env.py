@@ -24,6 +24,7 @@ from isaaclab_assets.robots.unitree    import AliengoCFG_Color, AliengoCFG_Black
 import isaaclab.sim as sim_utils
 import isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp
 
+import isaaclab.envs.mdp.commands.velocity_command
 
 global ROUGH_TERRAIN
 global HEIGHT_SCAN
@@ -59,9 +60,13 @@ class SceneCfg(InteractiveSceneCfg):
 
 ########### MDP - RL ###########
 
+### ACTIONS ###
+@configclass
+class ActionsCfg:
+    """Action specifications for the MDP."""
+    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=1.0, use_default_offset=True)
 
 ### OBSERVATIONS ###
-
 @configclass
 class ObsCfg(ObsGroup):
     """
@@ -69,10 +74,10 @@ class ObsCfg(ObsGroup):
     """
     class PolicyCfg(ObsGroup):
         ### Robot State
-        base_lin_pos = ObsTerm(func=mdp.root_pos_w, noise=Unoise(n_min=-0.01, n_max=0.01))      # [m]
-        base_quat_pos = ObsTerm(func=mdp.root_quat_w, noise=Unoise(n_min=-0.02, n_max=0.02))    # [quaternion]
-        base_lin_vel = ObsTerm(func=mdp.root_lin_vel_w, noise=Unoise(n_min=-0.1, n_max=0.1))    # [m/s]
-        base_ang_vel = ObsTerm(func=mdp.root_ang_vel_w, noise=Unoise(n_min=-0.08, n_max=0.08))    # [rad/s]
+        base_lin_pos  = ObsTerm(func=mdp.root_pos_w,     noise=Unoise(n_min=-0.01, n_max=0.01))    # [m]
+        base_quat_pos = ObsTerm(func=mdp.root_quat_w,    noise=Unoise(n_min=-0.02, n_max=0.02))    # [quaternion]
+        base_lin_vel  = ObsTerm(func=mdp.root_lin_vel_w, noise=Unoise(n_min=-0.1,  n_max=0.1))      # [m/s]
+        base_ang_vel  = ObsTerm(func=mdp.root_ang_vel_w, noise=Unoise(n_min=-0.08, n_max=0.08))    # [rad/s]
             
         ### Joint state 
         joint_pos = ObsTerm(func=mdp.joint_pos_rel, noise=Unoise(n_min=-0.07, n_max=0.07))      # [rad]
@@ -85,7 +90,6 @@ class ObsCfg(ObsGroup):
     policy: PolicyCfg = PolicyCfg()
 
 ### REWARDS ###
-
 @configclass
 class RewardsCfg:
     """
@@ -129,7 +133,6 @@ class RewardsCfg:
     )
     
 ### Commands ###
-
 @configclass
 class CommandsCfg:
     """Command terms for the MDP."""   # ASKING TO HAVE 0 Velocity
@@ -146,3 +149,67 @@ class CommandsCfg:
             lin_vel_x=(0.0, 0.0), lin_vel_y=(0.0, 0.0), ang_vel_z=(0.0, 0.0), heading=(0, 0)
         ),
     )
+    
+### EVENTS ###
+@configclass
+class EventCfg:
+    """Configuration for events."""
+    
+    # Reset the robot with initial velocity
+    reset_scene = EventTerm(
+        func=mdp.reset_root_state_uniform,
+        params={"pose_range": {"x": (-0.1, 0.1), "z": (-0.32, 0.18), # it was z(-0.22, 12)
+                               "roll": (-0.15, 0.15), "pitch": (-0.15, 0.15),}, #cancel if want it planar
+                "velocity_range": {"x": (-0.4, 0.9), "y": (-0.4, 0.4)},}, 
+        mode="reset",
+    )
+    reset_random_joint = EventTerm(
+        func=mdp.reset_joints_by_offset,
+        params={"position_range": (-0.40, 0.40), "velocity_range": (-0.4, 0.4)},
+        mode="reset",
+    )
+    push_robot = EventTerm(
+        func=mdp.push_by_setting_velocity,
+        params={"velocity_range": {"x": (-0.6, 0.6), "y": (-0.5, 0.5), "z": (-0.15, 0.1)}},
+        mode="interval",
+        interval_range_s=(0.3,2.2),
+    )
+    
+### TERMINATION ###
+@configclass
+class TerminationsCfg:
+    """Termination terms for the MDP."""
+    time_out = DoneTerm(func=mdp.time_out, time_out=True)
+    
+@configclass
+class CurriculumCfg:
+    """Configuration for the curriculum."""
+    pass
+
+
+######### ENVIRONMENT #########
+@configclass
+class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_managers(), reset(), step(), seed(), close(), 
+    """Configuration for the locomotion velocity-tracking environment."""
+
+    scene : SceneCfg                = SceneCfg(num_envs=1028, env_spacing=2.5)
+    actions : ActionsCfg            = ActionsCfg()
+    commands : CommandsCfg          = CommandsCfg() 
+    observations : ObsCfg           = ObsCfg()
+ 
+    events : EventCfg               = EventCfg()
+    rewards : RewardsCfg            = RewardsCfg()
+    terminations : TerminationsCfg  = TerminationsCfg()
+    curriculum : CurriculumCfg      = CurriculumCfg()
+
+
+    def __post_init__(self):
+        """Initialize additional environment settings."""
+        self.decimation = 4  # env decimation -> 50 Hz control
+        self.sim.dt = 0.005  # simulation timestep -> 200 Hz physics
+        self.sim.render_interval = self.decimation
+        self.episode_length_s = 3.0
+        #self.sim.physics_material = self.scene.terrain.physics_material
+
+        # viewer settings
+        self.viewer.eye = (5.0, 1.0, 2.0)
