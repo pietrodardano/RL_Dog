@@ -25,7 +25,7 @@ set_seed(42)
 
 from isaaclab.envs  import ManagerBasedRLEnv
 from aliengo_env    import RewardsCfg
-from aliengo_env    import ObservationsCfg
+from aliengo_env    import ObsCfg
 
 class Shared(GaussianMixin, DeterministicMixin, Model):
     def __init__(self, observation_space, action_space, device, clip_actions=False,
@@ -166,7 +166,7 @@ class PPO_aliengo:
         file_paths = {
             "PPO_config.txt": self._get_ppo_config_content(training_type),
             "RewardsCfg_source.txt": inspect.getsource(RewardsCfg),
-            "ObservationsCfg_source.txt": inspect.getsource(ObservationsCfg.PolicyCfg)
+            "ObservationsCfg_source.txt": inspect.getsource(ObsCfg.PolicyCfg)
         }
 
         for file_name, content in file_paths.items():

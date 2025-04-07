@@ -9,3 +9,6 @@
     look carefully where the .usd file is saved (spoiler: locally, in IsaacLab_ folder)
 
     the only problem with that method (and not the "gui" one) is that colors are not displayed
+
+
+aliengo_color is black !!!, i have to create the colored USD

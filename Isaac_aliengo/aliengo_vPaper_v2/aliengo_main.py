@@ -1,14 +1,15 @@
 """
     This script demonstrates the environment for a quadruped robot AlienGo.
 
-    HEADLESS:
+    --- HEADLESS: ---
+    
     conda activate isaacenv
     cd
     cd IsaacLab/
     
-    ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_vPaper_v2/aliengo_main.py --num_envs 4096 --headless --enable_cameras
+    ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_vPaper_v2/aliengo_main.py --num_envs 2056 --headless --enable_cameras
 
-    ./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_vPaper_v2/aliengo_main.py --num_envs 4096 --headless --enable_cameras
+    ./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_vPaper_v2/aliengo_main.py --num_envs 2056 --headless --enable_cameras
 
 """
 
@@ -20,7 +21,7 @@ parser.add_argument('--num_envs',       type=int,       default=2056,           
 parser.add_argument('--env_spacing',    type=float,     default=2.5,               help='Environment spacing')
 parser.add_argument("--task",           type=str,       default="AlienGo_vPaper",  help="Name of the task.")
 
-parser.add_argument("--headless",       action="store_true",    default=True,    help="GUI or not GUI.")
+parser.add_argument("--my_headless",       action="store_true",    default=True,    help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=True,    help="Record videos during training.")
 parser.add_argument("--video_length",   type=int,               default=500,     help="Length of the recorded video (in steps).")
 parser.add_argument("--video_interval", type=int,               default=10000,   help="Interval between video recordings (in steps).")
@@ -85,7 +86,7 @@ def main():
     agent = PPO_aliengo(env=env, device=device, name=name_task, save_path=directory, verbose=1) # SKRL_env_WRAPPER inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
-    agent.train_sequential(timesteps=21000, headless=args_cli.headless)
+    agent.train_sequential(timesteps=21000, headless=args_cli.my_headless)
 
     env.close()
     
