@@ -31,22 +31,21 @@ from isaaclab.app import AppLauncher
 
 import argparse
 parser = argparse.ArgumentParser(description='AlienGo_vP Environment Configuration')
-parser.add_argument('--num_envs',       type=int,   default=1028,            help='Number of environments')
+parser.add_argument('--num_envs',       type=int,   default=1028,          help='Number of environments')
 parser.add_argument('--env_spacing',    type=float, default=2.5,           help='Environment spacing')
 parser.add_argument('--walk',           type=int,   default=0,             help='ask to Walk or not (1,0)')
 parser.add_argument("--task",           type=str,   default="AlienGo-v0",  help="Name of the task.")
 
-#parser.add_argument("--headless",       action="store_true",    default=True,  help="GUI or not GUI.")
+#parser.add_argument("--headless",       action="store_true",    default=True,      help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=HEADLESS,  help="Record videos during training.")
-parser.add_argument("--video_length",   type=int,               default=500,    help="Length of the recorded video (in steps).")
-parser.add_argument("--video_interval", type=int,               default=10000,   help="Interval between video recordings (in steps).")
-#parser.add_argument("--device",         type=str,               default="cpu",  help="cpu or cuda.")
-#args = parser.parse_args()
+parser.add_argument("--video_length",   type=int,               default=500,       help="Length of the recorded video (in steps).")
+parser.add_argument("--video_interval", type=int,               default=10000,     help="Interval between video recordings (in steps).")
+#parser.add_argument("--device",         type=str,               default="cpu",     help="cpu or cuda.")
 
 AppLauncher.add_app_launcher_args(parser)
-args_cli = parser.parse_args()
-app_launcher = AppLauncher(args_cli)
-simulation_app = app_launcher.app
+args_cli        = parser.parse_args()
+app_launcher    = AppLauncher(args_cli)
+simulation_app  = app_launcher.app
 
 from isaaclab.envs        import ManagerBasedRLEnv
 from isaaclab.envs        import ManagerBasedRLEnvCfg

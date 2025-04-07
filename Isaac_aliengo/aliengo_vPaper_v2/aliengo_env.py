@@ -23,11 +23,7 @@ from isaaclab_assets.robots.unitree    import AliengoCFG_Color, AliengoCFG_Black
 
 import isaaclab.sim as sim_utils
 import isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp
-
-import isaaclab.envs.mdp.commands.velocity_command
-
-global ROUGH_TERRAIN
-global HEIGHT_SCAN
+# import isaaclab.envs.mdp.commands.velocity_command
 
 ########### SCENE ###########
 
