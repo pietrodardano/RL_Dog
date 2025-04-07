@@ -1,0 +1,8 @@
+
+
+
+create new aliengo_env 
+ old rewards --> c(x)  (booleans)
+
+we can use an indicator function I(c(x))   (makes it boolean)
+I(c(x)) = 1 if constraints are satisfied otherwise 0
