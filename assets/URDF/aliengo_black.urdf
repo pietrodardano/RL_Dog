@@ -307,7 +307,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/trunk.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/trunk.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -371,7 +371,7 @@
     <visual>
       <origin rpy="3.141592653589793 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -424,7 +424,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/thigh_mirror.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/thigh_mirror.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -477,7 +477,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -584,7 +584,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -637,7 +637,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/thigh.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/thigh.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -690,7 +690,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -797,7 +797,7 @@
     <visual>
       <origin rpy="3.141592653589793 3.141592653589793 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -850,7 +850,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/thigh_mirror.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/thigh_mirror.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -903,7 +903,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -1010,7 +1010,7 @@
     <visual>
       <origin rpy="0 3.141592653589793 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/hip.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -1063,7 +1063,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/thigh.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/thigh.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -1116,7 +1116,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/rl_sim/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
+        <mesh filename="/home/robotac22/RL_Dog/assets/MESHES/calf.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>

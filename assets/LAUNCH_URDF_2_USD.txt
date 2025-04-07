@@ -12,6 +12,14 @@ cd IsaacLab
   --joint-stiffness 0.0 \
   --joint-damping 0.0 \
   --joint-target-type none
+
+  ./isaaclab.sh -p scripts/tools/convert_urdf.py\
+  ~/RL_Dog/assets/URDF/aliengo_black.urdf \
+  source/isaaclab_assets/data/Robots/aliengo_black.usd \
+  --merge-joints \
+  --joint-stiffness 0.0 \
+  --joint-damping 0.0 \
+  --joint-target-type none
   
 
 #### COLORS ARE NOT DISPLAYED (IDK WHY)
