@@ -41,17 +41,31 @@ class SceneCfg(InteractiveSceneCfg):
     # Robot
     robot: ArticulationCfg = AliengoCFG_Black.replace(prim_path="{ENV_REGEX_NS}/Robot")
     
+    # SENSORS (virtual ones, the real robot does not has them)
+    contact_forces = ContactSensorCfg(prim_path="{ENV_REGEX_NS}/Robot/.*", history_length=3, track_air_time=True)
+    
     # Lights
+    # dome_light = AssetBaseCfg(
+    #     prim_path="/World/DomeLight",
+    #     spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=500.0),
+    # )
+    
+    # light_cfg = sim_utils.DomeLightCfg(intensity=2000.0, color=(0.75, 0.75, 0.75))
+    # light_cfg.func("/World/Light", light_cfg)
+    
     dome_light = AssetBaseCfg(
+
         prim_path="/World/DomeLight",
+
         spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=500.0),
+
     )
     
-    cfg_light_distant = sim_utils.DistantLightCfg(
-        intensity=3000.0,
-        color=(0.75, 0.75, 0.75),
-    )
-    cfg_light_distant.func("/World/lightDistant", cfg_light_distant, translation=(1, 0, 10))
+    # cfg_light_distant = sim_utils.DistantLightCfg(
+    #     intensity=3000.0,
+    #     color=(0.75, 0.75, 0.75),
+    # )
+    # cfg_light_distant.func("/World/lightDistant", cfg_light_distant, translation=(1, 0, 10))
 
 
 ########### MDP - RL ###########
