@@ -92,7 +92,7 @@ class ObsCfg:
 
         def __post_init__(self) -> None:
             self.enable_corruption = False
-            self.concatenate_terms = True
+            self.concatenate_terms = True # Must be True (if no images), otherwise error. Howevere even if True gives error!!
 
     policy: PolicyCfg = PolicyCfg()
 
