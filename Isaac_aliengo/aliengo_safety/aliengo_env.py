@@ -1,5 +1,7 @@
 import math
 import torch
+import sys
+import os
 
 from isaaclab.envs      import ManagerBasedEnv, ManagerBasedRLEnv, ManagerBasedRLEnvCfg
 from isaaclab.assets    import Articulation, RigidObject, AssetBaseCfg
@@ -19,7 +21,7 @@ from isaaclab.utils       import configclass
 from isaaclab.utils.noise import AdditiveGaussianNoiseCfg as Gnoise
 from isaaclab.utils.noise import AdditiveUniformNoiseCfg as Unoise
 
-from isaaclab_assets.robots.unitree    import AliengoCFG_Color, AliengoCFG_Black
+from isaaclab_assets.robots.unitree import AliengoCFG_Color, AliengoCFG_Black
 
 import isaaclab.sim as sim_utils
 import isaaclab_tasks.manager_based.locomotion.velocity.mdp as mdp
