@@ -75,7 +75,7 @@ class ActionsCfg:
 
 ### OBSERVATIONS ###
 @configclass
-class ObsCfg(ObsGroup):
+class ObsCfg:
     """
     Observation configuration for the AlienGo environment.
     """
@@ -90,9 +90,9 @@ class ObsCfg(ObsGroup):
         joint_pos = ObsTerm(func=mdp.joint_pos_rel, noise=Unoise(n_min=-0.07, n_max=0.07))      # [rad]
         joint_vel = ObsTerm(func=mdp.joint_vel_rel, noise=Unoise(n_min=-0.04, n_max=0.04))      # [rad/s]
 
-        def __post_init__(self):
-            self.enable_corruption = True   # IDK
-            self.concatenate_terms = True   # IDK
+        def __post_init__(self) -> None:
+            self.enable_corruption = False
+            self.concatenate_terms = True
 
     policy: PolicyCfg = PolicyCfg()
 
