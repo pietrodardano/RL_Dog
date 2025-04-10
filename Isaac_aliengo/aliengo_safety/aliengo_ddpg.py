@@ -66,11 +66,12 @@ class Aliengo_DDPG:
              verbose=0):
                
         # env = load_isaaclab_env(task_name="Aliengo_ddpg", num_envs=64)
-        self.env = wrap_env(env)
-        self.device = device
-        self.name = name
-        self.directory = directory
-        self.agent = self._create_agent()
+        self.env        = wrap_env(env, verbose=verbose, wrapper="isaaclab")
+        self.device     = device
+        self.name       = name
+        self.config     = config
+        self.directory  = directory
+        self.agent      = self._create_agent()
         
     def _create_agent(self):
         model_nn = {}
@@ -82,7 +83,6 @@ class Aliengo_DDPG:
         model_nn["target_policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)  # Needed
         model_nn["critic"]        = Critic(self.env.observation_space, self.env.action_space, self.device)
         model_nn["target_critic"] = Critic(self.env.observation_space, self.env.action_space, self.device)
-        self.config = DDPG_DEFAULT_CONFIG.copy()
         self.config = {
             "exploration": {"noise": OrnsteinUhlenbeckNoise(theta=0.15, sigma=0.1, base_scale=0.5, device=self.device)},
             "gradient_steps": 1,
