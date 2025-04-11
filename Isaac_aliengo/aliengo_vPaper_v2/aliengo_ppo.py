@@ -80,7 +80,7 @@ class Shared(GaussianMixin, DeterministicMixin, Model):
             return self.value_layer(shared_output), {}
         
 class PPO_aliengo:
-    def __init__(self, env: ManagerBasedRLEnv, config= PPO_DEFAULT_CONFIG, device="cuda", name="AlienGo_XX", directory=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../runs"), verbose=0):
+    def __init__(self, env: ManagerBasedRLEnv, config=PPO_DEFAULT_CONFIG, device="cuda", name="AlienGo_XX", directory=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../runs"), verbose=0):
         self.env        = wrap_env(env, verbose=verbose, wrapper="isaaclab")
         self.name       = name
         self.directory  = directory

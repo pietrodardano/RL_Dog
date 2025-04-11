@@ -43,8 +43,8 @@ class DeterministicActor(DeterministicMixin, Model):
         return self.net(inputs["states"]), {}
 
 class Critic(DeterministicMixin, Model):
-    def __init__(self, observation_space, device, clip_actions=False):
-        Model.__init__(self, observation_space, 0, device)  # 0 was action_space
+    def __init__(self, observation_space, action_space, device, clip_actions=False):
+        Model.__init__(self, observation_space, action_space, device)  # 0 was action_space
         DeterministicMixin.__init__(self, clip_actions)
 
         self.net = nn.Sequential(nn.Linear(self.num_observations + self.num_actions, 256),  # self.num_actions to put 0 
@@ -58,15 +58,16 @@ class Critic(DeterministicMixin, Model):
 
 ########################## ALIENGO_DDPG ##########################
 class Aliengo_DDPG:
-    def init(self, env: ManagerBasedRLEnv, 
+    def __init__(self, 
+             env: ManagerBasedRLEnv, 
              device="cuda", 
-             config= DDPG_DEFAULT_CONFIG, 
+             config=DDPG_DEFAULT_CONFIG, 
              name="Aliengo_XX", 
              directory=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../runs"), 
              verbose=0):
                
         # env = load_isaaclab_env(task_name="Aliengo_ddpg", num_envs=64)
-        self.env        = wrap_env(env, verbose=verbose, wrapper="isaaclab")
+        self.env        = wrap_env(env, verbose=verbose, wrapper="isaaclab-multi-agents")
         self.device     = device
         self.name       = name
         self.config     = config
@@ -78,18 +79,19 @@ class Aliengo_DDPG:
         memory = RandomMemory(memory_size=15625, num_envs=self.env.num_envs, device=self.device)
         
         # DDPG reqquires 4 models:   https://skrl.readthedocs.io/en/latest/api/agents/ddpg.html#models
-        # models["policy"] = DeterministicActor(env.observation_space, env.action_space, device)
-        model_nn["policy"]        = torch.load("/home/user/Documents/GitHub/RL_Dog/Policies/FULL_STATE__NN_v3.pt")   # !!!
+        model_nn["policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)
+        #model_nn["policy"]        = torch.load("/home/user/Documents/GitHub/RL_Dog/Policies/FULL_STATE__NN_v3.pt")   # !!!
         model_nn["target_policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)  # Needed
         model_nn["critic"]        = Critic(self.env.observation_space, self.env.action_space, self.device)
         model_nn["target_critic"] = Critic(self.env.observation_space, self.env.action_space, self.device)
+        
         self.config = {
             "exploration": {"noise": OrnsteinUhlenbeckNoise(theta=0.15, sigma=0.1, base_scale=0.5, device=self.device)},
             "gradient_steps": 1,
             "batch_size": 4096,
             "discount_factor": 0.99,
             "polyak": 0.099,  # 0.005, now higher since we know the policy
-            #"actor_learning_rate": 5e-4,
+            # "actor_learning_rate": 5e-4,
             "critic_learning_rate": 5e-4,
             "random_timesteps": 80,
             "learning_starts": 80,
