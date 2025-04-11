@@ -1,0 +1,50 @@
+------------------- wrapper: isaaclab-multi.agent ---------------
+
+[ALIENGO-INFO] Recording videos during training.
+        video_folder: /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/../runs/AlienGo_safety_11_04_15:54/videos
+        step_trigger: lambda step: step % args_cli.video_interval == 0 and step > 0
+        video_length: 500
+        disable_logger: True
+[skrl:INFO] Environment wrapper: Isaac Lab (multi-agent)
+Traceback (most recent call last):
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 92, in <module>
+    main()
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 84, in main
+    agent = Aliengo_DDPG(env=env, device=device, name=name_task, directory=directory, verbose=1) # SKRL_env_WRAPPER inside
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 77, in __init__
+    self.agent      = self._create_agent()
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 84, in _create_agent
+    model_nn["policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 34, in __init__
+    Model.__init__(self, observation_space, action_space, device)
+  File "/home/user/miniconda3/envs/isaacenv/lib/python3.10/site-packages/skrl/models/torch/base.py", line 68, in __init__
+    self.num_observations = None if observation_space is None else compute_space_size(observation_space)
+  File "/home/user/miniconda3/envs/isaacenv/lib/python3.10/site-packages/skrl/utils/spaces/torch/spaces.py", line 299, in compute_space_size
+    return gymnasium.spaces.flatdim(space)
+  File "/home/user/miniconda3/envs/isaacenv/lib/python3.10/functools.py", line 889, in wrapper
+    return dispatch(args[0].__class__)(*args, **kw)
+  File "/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/spaces/utils.py", line 53, in flatdim
+    if space.is_np_flattenable is False:
+AttributeError: 'function' object has no attribute 'is_np_flattenable'
+
+------------------- wrapper: isaaclab --------------- (should be valid both for single and multi agent)
+
+[INFO]: Completed setting up the environment...
+[ALIENGO-INFO] Recording videos during training.
+        video_folder: /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/../runs/AlienGo_safety_11_04_15:56/videos
+        step_trigger: lambda step: step % args_cli.video_interval == 0 and step > 0
+        video_length: 500
+        disable_logger: True
+[skrl:INFO] Environment wrapper: Isaac Lab (single-agent)
+Traceback (most recent call last):
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 92, in <module>
+    main()
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 84, in main
+    agent = Aliengo_DDPG(env=env, device=device, name=name_task, directory=directory, verbose=1) # SKRL_env_WRAPPER inside
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 77, in __init__
+    self.agent      = self._create_agent()
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 109, in _create_agent
+    agent = DDPG(
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/my_ddpg_v0.py", line 157, in __init__
+    self._exploration_initial_scale = self.cfg["exploration"]["initial_scale"]
+KeyError: 'initial_scale'

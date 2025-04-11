@@ -21,10 +21,12 @@ from my_ddpg_v0 import DDPG, DDPG_DEFAULT_CONFIG
 # from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
 
 from isaaclab.envs  import ManagerBasedRLEnv
-from aliengo_env    import RewardsCfg_SAFETY, RewTerm
+from aliengo_env    import RewardsCfg_SAFETY, RewardsCfg_ORIGINAL
 from aliengo_env    import ObsCfg
 
 set_seed() 
+
+_RewardsCfg = RewardsCfg_SAFETY
 
 # define models (deterministic models) using mixins
 class DeterministicActor(DeterministicMixin, Model):
@@ -66,8 +68,8 @@ class Aliengo_DDPG:
              directory=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../runs"), 
              verbose=0):
                
-        # env = load_isaaclab_env(task_name="Aliengo_ddpg", num_envs=64)
-        self.env        = wrap_env(env, verbose=verbose, wrapper="isaaclab-multi-agents")
+        # self.env        = load_isaaclab_env(task_name="AlienGo_safety", num_envs=self.env.num_envs)
+        self.env        = wrap_env(env, wrapper="isaaclab-multi-agent")  # or isaaclab-multi-agent
         self.device     = device
         self.name       = name
         self.config     = config
@@ -141,7 +143,7 @@ class Aliengo_DDPG:
     def _save_source_code(self, directory, training_type):
         file_paths = {
             "DDPG_config.txt": self._get_DDPG_config_content(training_type),
-            "RewardsCfg_source.txt": inspect.getsource(RewardsCfg_SAFETY),
+            "RewardsCfg_source.txt": inspect.getsource(_RewardsCfg),
             "ObservationsCfg_source.txt": inspect.getsource(ObsCfg.PolicyCfg)
         }
 
