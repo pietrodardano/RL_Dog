@@ -79,11 +79,12 @@ class ObsCfg:
     """
     Observation configuration for the AlienGo environment.
     """
+    @configclass
     class PolicyCfg(ObsGroup):
         ### Robot State
         base_lin_pos  = ObsTerm(func=mdp.root_pos_w,     noise=Unoise(n_min=-0.01, n_max=0.01))    # [m]
         base_quat_pos = ObsTerm(func=mdp.root_quat_w,    noise=Unoise(n_min=-0.02, n_max=0.02))    # [quaternion]
-        base_lin_vel  = ObsTerm(func=mdp.root_lin_vel_w, noise=Unoise(n_min=-0.1,  n_max=0.1))      # [m/s]
+        base_lin_vel  = ObsTerm(func=mdp.root_lin_vel_w, noise=Unoise(n_min=-0.1,  n_max=0.1))     # [m/s]
         base_ang_vel  = ObsTerm(func=mdp.root_ang_vel_w, noise=Unoise(n_min=-0.08, n_max=0.08))    # [rad/s]
             
         ### Joint state 
@@ -91,7 +92,7 @@ class ObsCfg:
         joint_vel = ObsTerm(func=mdp.joint_vel_rel, noise=Unoise(n_min=-0.04, n_max=0.04))      # [rad/s]
 
         def __post_init__(self) -> None:
-            self.enable_corruption = False
+            self.enable_corruption = True
             self.concatenate_terms = True # Must be True (if no images), otherwise error. Howevere even if True gives error!!
 
     policy: PolicyCfg = PolicyCfg()

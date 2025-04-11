@@ -1,13 +1,13 @@
 """
     --- HEADLESS: ---
     
-    conda activate isaacenv
-    cd
-    cd IsaacLab/
-    
-    ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py --num_envs 2056 --headless --enable_cameras
+conda activate isaacenv
+cd
+cd IsaacLab/
 
-    ./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py --num_envs 2056 --headless --enable_cameras
+./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py --num_envs 2056 --headless --enable_cameras
+
+./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py --num_envs 2056 --headless --enable_cameras
 
 """
 

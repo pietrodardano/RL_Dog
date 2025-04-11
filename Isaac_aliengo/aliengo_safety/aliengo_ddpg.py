@@ -17,7 +17,7 @@ from skrl.utils import set_seed
 from skrl.envs.loaders.torch import load_isaaclab_env
 from skrl.envs.wrappers.torch import wrap_env
 
-from my_ddpg import DDPG, DDPG_DEFAULT_CONFIG
+from my_ddpg_v0 import DDPG, DDPG_DEFAULT_CONFIG
 # from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
 
 from isaaclab.envs  import ManagerBasedRLEnv
