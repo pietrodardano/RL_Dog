@@ -260,7 +260,7 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
     observations : ObsCfg           = ObsCfg()
  
     events : EventCfg               = EventCfg()
-    rewards : RewardsCfg_SAFETY     = RewardsCfg_SAFETY()
+    rewards : RewardsCfg_ORIGINAL     = RewardsCfg_ORIGINAL()
     terminations : TerminationsCfg  = TerminationsCfg()
     curriculum : CurriculumCfg      = CurriculumCfg()
 

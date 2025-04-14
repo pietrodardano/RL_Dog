@@ -159,9 +159,9 @@ class DDPG(Agent):
         self._grad_norm_clip = self.cfg["grad_norm_clip"]
 
         self._exploration_noise = self.cfg["exploration"]["noise"]
-        self._exploration_initial_scale = self.cfg["exploration"]["initial_scale"]
-        self._exploration_final_scale = self.cfg["exploration"]["final_scale"]
-        self._exploration_timesteps = self.cfg["exploration"]["timesteps"]
+        self._exploration_initial_scale = self.cfg["exploration"].get("initial_scale", 1.0)
+        self._exploration_final_scale = self.cfg["exploration"].get("final_scale", 1e-3)
+        self._exploration_timesteps = self.cfg["exploration"].get("timesteps", None)
 
         self._rewards_shaper = self.cfg["rewards_shaper"]
 

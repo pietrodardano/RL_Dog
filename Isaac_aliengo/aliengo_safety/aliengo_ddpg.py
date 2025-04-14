@@ -17,8 +17,8 @@ from skrl.utils import set_seed
 from skrl.envs.loaders.torch import load_isaaclab_env
 from skrl.envs.wrappers.torch import wrap_env
 
-#from my_ddpg_v0 import DDPG, DDPG_DEFAULT_CONFIG
-from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
+from my_ddpg_v0 import DDPG, DDPG_DEFAULT_CONFIG
+#from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
 
 from isaaclab.envs  import ManagerBasedRLEnv
 from aliengo_env    import RewardsCfg_SAFETY, RewardsCfg_ORIGINAL
@@ -120,7 +120,7 @@ class Aliengo_DDPG:
     def my_train(self, timesteps=21000, headless=True, mode="sequential"):
         cfg_trainer = {"timesteps": timesteps, "headless": headless}
         trainer     = SequentialTrainer(cfg=cfg_trainer, env=self.env, agents=self.agent) if mode == "sequential" else ParallelTrainer(cfg=cfg_trainer, env=self.env, agents=self.agent)
-        directory   = self._setup_experiment_directory(mode)
+        directory   = self.directory
         self._save_source_code(directory, mode)
         return trainer
     
@@ -129,17 +129,6 @@ class Aliengo_DDPG:
         trainer.train()
         
     ########### WRITERS ###########
-    def _setup_experiment_directory(self, training_type):
-        experiment_name = self.name
-        timestamp = datetime.datetime.now().strftime("%d_%m_%H:%M")
-        directory = f"{self.directory}{experiment_name}_{timestamp}"
-        try:
-            os.makedirs(directory, exist_ok=True)
-        except Exception as e:
-            print(Fore.RED + f'[ALIENGO-DDPG] {e}' + Style.RESET_ALL)
-
-        return directory
-
     def _save_source_code(self, directory, training_type):
         file_paths = {
             "DDPG_config.txt": self._get_DDPG_config_content(training_type),
@@ -159,7 +148,7 @@ class Aliengo_DDPG:
     def _get_DDPG_config_content(self, training_type):
         return (
             f"####### {training_type.upper()} TRAINING ####### \n\n"
-            f"Num envs           -> {self.num_envs:>6} \n"
+            f"Num envs           -> {self.env.num_envs:>6} \n"
             "-------------------- DDPG CONFIG ------------------- \n"
             f"Batch_Size         -> {self.config['batch_size']:>6} \n"
             f"Critic_Lrate       -> {self.config['critic_learning_rate']:>6} \n"
