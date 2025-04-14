@@ -17,8 +17,8 @@ from skrl.utils import set_seed
 from skrl.envs.loaders.torch import load_isaaclab_env
 from skrl.envs.wrappers.torch import wrap_env
 
-from my_ddpg_v0 import DDPG, DDPG_DEFAULT_CONFIG
-# from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
+#from my_ddpg_v0 import DDPG, DDPG_DEFAULT_CONFIG
+from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
 
 from isaaclab.envs  import ManagerBasedRLEnv
 from aliengo_env    import RewardsCfg_SAFETY, RewardsCfg_ORIGINAL
@@ -46,7 +46,7 @@ class DeterministicActor(DeterministicMixin, Model):
 
 class Critic(DeterministicMixin, Model):
     def __init__(self, observation_space, action_space, device, clip_actions=False):
-        Model.__init__(self, observation_space, action_space, device)  # 0 was action_space
+        Model.__init__(self, observation_space, action_space, device)  # 0 for action_space
         DeterministicMixin.__init__(self, clip_actions)
 
         self.net = nn.Sequential(nn.Linear(self.num_observations + self.num_actions, 256),  # self.num_actions to put 0 
@@ -69,7 +69,7 @@ class Aliengo_DDPG:
              verbose=0):
                
         # self.env        = load_isaaclab_env(task_name="AlienGo_safety", num_envs=self.env.num_envs)
-        self.env        = wrap_env(env, wrapper="isaaclab-multi-agent")  # or isaaclab-multi-agent
+        self.env        = wrap_env(env) #, wrapper="isaaclab")  # or isaaclab-multi-agent
         self.device     = device
         self.name       = name
         self.config     = config
@@ -109,10 +109,10 @@ class Aliengo_DDPG:
         agent = DDPG(
             models=model_nn,
             memory=memory,
-            cfg=self.config,
             observation_space=self.env.observation_space,
             action_space=self.env.action_space,
-            device=self.device
+            device=self.device,
+            cfg=self.config
         )
         return agent
     
@@ -169,6 +169,11 @@ class Aliengo_DDPG:
             f"Learning Starts    -> {self.config['learning_starts']:>6} \n"
             f"Gradient Steps     -> {self.config['gradient_steps']:>6} \n"
         )
+
+
+
+
+
 
 ######################### ORIGINAL CONFIG #########################
 

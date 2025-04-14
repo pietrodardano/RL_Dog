@@ -81,6 +81,7 @@ def main():
         env = ManagerBasedRLEnv(cfg=env_cfg)
         pass
     
+    # Here the env is wrapped with the SKRL wrapper
     agent = Aliengo_DDPG(env=env, device=device, name=name_task, directory=directory, verbose=1) # SKRL_env_WRAPPER inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
