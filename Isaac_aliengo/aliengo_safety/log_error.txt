@@ -1,0 +1,22 @@
+
+[INFO]: Completed setting up the environment...
+[ALIENGO-INFO] Recording videos during training.
+        video_folder: /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/../../runs//AlienGo_safety_15_04_17:57/videos
+        step_trigger: lambda step: step % args_cli.video_interval == 0 and step > 0
+        video_length: 500
+        disable_logger: True
+[skrl:INFO] Environment wrapper: Isaac Lab (single-agent)
+Traceback (most recent call last):
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 93, in <module>
+    main()
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 85, in main
+    agent = Aliengo_DDPG(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SKRL_env_WRAPPER inside
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 80, in __init__
+    self.agent      = self._create_agent()
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 111, in _create_agent
+    agent = DDPG(
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/my_ddpg.py", line 100, in __init__
+    super().__init__(
+  File "/home/user/miniconda3/envs/isaacenv/lib/python3.10/site-packages/skrl/agents/torch/base.py", line 64, in __init__
+    model.to(model.device)
+AttributeError: 'collections.OrderedDict' object has no attribute 'to'
