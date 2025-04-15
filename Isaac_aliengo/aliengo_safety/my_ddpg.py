@@ -234,10 +234,11 @@ class DDPG(Agent):
         if timestep < self._random_timesteps:
             return self.policy.random_act({"states": self._state_preprocessor(states)}, role="policy")
 
-        # sample deterministic actions
+        # sample DETERMINISTIC actions
         with torch.autocast(device_type=self._device_type, enabled=self._mixed_precision):
             actions, _, outputs = self.policy.act({"states": self._state_preprocessor(states)}, role="policy")
-
+        # HERE THE ACTIONS ARE THE ONES THAT THE ROBOT HAS TO DO, COMING FROM THE ALREADY TRAINED POLICY!!!!
+        
         # add exloration noise
         if self._exploration_noise is not None:
             # sample noises
@@ -310,7 +311,7 @@ class DDPG(Agent):
         """
         super().record_transition(
             states, rewards, next_states, terminated, truncated, infos, timestep, timesteps
-        )
+        )        # !
         # actions (after states)
 
         if self.memory is not None:

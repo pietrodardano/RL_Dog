@@ -17,7 +17,8 @@ from skrl.utils import set_seed
 from skrl.envs.loaders.torch import load_isaaclab_env
 from skrl.envs.wrappers.torch import wrap_env
 
-from my_ddpg import DDPG, DDPG_DEFAULT_CONFIG
+from my_ddpg_v0 import DDPG, DDPG_DEFAULT_CONFIG
+#from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
 
 from isaaclab.envs  import ManagerBasedRLEnv
 from aliengo_env    import RewardsCfg_SAFETY, RewardsCfg_ORIGINAL
@@ -37,9 +38,7 @@ class DeterministicActor(DeterministicMixin, Model):
                                  nn.ReLU(),
                                  nn.Linear(256, 256),
                                  nn.ReLU(),
-                                 nn.Linear(256, 128),
-                                 nn.ReLU(),
-                                 nn.Linear(128, self.num_actions),
+                                 nn.Linear(256, self.num_actions),
                                  nn.Tanh())
 
     def compute(self, inputs, role):
@@ -47,19 +46,17 @@ class DeterministicActor(DeterministicMixin, Model):
 
 class Critic(DeterministicMixin, Model):
     def __init__(self, observation_space, action_space, device, clip_actions=False):
-        Model.__init__(self, observation_space, 0, device)  # 0 for action_space
+        Model.__init__(self, observation_space, action_space, device)  # 0 for action_space
         DeterministicMixin.__init__(self, clip_actions)
 
-        self.net = nn.Sequential(nn.Linear(self.num_observations + 0, 256), # 0 for action_space
+        self.net = nn.Sequential(nn.Linear(self.num_observations + self.num_actions, 512),
                                  nn.ReLU(),
-                                 nn.Linear(256, 256),
+                                 nn.Linear(512, 256),
                                  nn.ReLU(),
-                                 nn.Linear(256, 128),
-                                 nn.ReLU(),
-                                 nn.Linear(128, 1))
+                                 nn.Linear(256, 1))
         
     def compute(self, inputs, role):
-        return self.net(inputs["states"]), {}
+        return self.net(torch.cat([inputs["states"], inputs["taken_actions"]], dim=1)), {}
 
 ########################## ALIENGO_DDPG ##########################
 class Aliengo_DDPG:
@@ -72,7 +69,7 @@ class Aliengo_DDPG:
              verbose=0):
                
         # self.env        = load_isaaclab_env(task_name="AlienGo_safety", num_envs=self.env.num_envs)
-        self.env        = wrap_env(env, wrapper="isaaclab")  # or isaaclab-multi-agent
+        self.env        = wrap_env(env) #, wrapper="isaaclab")  # or isaaclab-multi-agent
         self.device     = device
         self.name       = name
         self.config     = config
@@ -81,14 +78,14 @@ class Aliengo_DDPG:
         
     def _create_agent(self):
         model_nn = {}
-        memory = RandomMemory(memory_size=15625, num_envs=self.env.num_envs, device=self.device)
+        memory = RandomMemory(memory_size=1385, num_envs=self.env.num_envs, device=self.device)
         
         # DDPG reqquires 4 models:   https://skrl.readthedocs.io/en/latest/api/agents/ddpg.html#models
-        model_nn["policy"]        = torch.load("/home/user/Documents/GitHub/RL_Dog/Policies/FULL_STATE__NN_v3.pt", weights_only=True)   # !!!
+        model_nn["policy"]        = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)
         model_nn["target_policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)  # Needed
         model_nn["critic"]        = Critic(self.env.observation_space, self.env.action_space, self.device)
         model_nn["target_critic"] = Critic(self.env.observation_space, self.env.action_space, self.device)
-        model_nn["device"]= self.device
+        
         self.config = {
             "exploration": {"noise": OrnsteinUhlenbeckNoise(theta=0.15, sigma=0.1, base_scale=0.5, device=self.device)},
             "gradient_steps": 1,
@@ -154,6 +151,7 @@ class Aliengo_DDPG:
             "-------------------- DDPG CONFIG ------------------- \n"
             f"Batch_Size         -> {self.config['batch_size']:>6} \n"
             f"Critic_Lrate       -> {self.config['critic_learning_rate']:>6} \n"
+            #f"Actor_Lrate        -> {self.config['actor_learning_rate']:>6} \n"
             f"Discount Factor    -> {self.config['discount_factor']:>6} \n"
             f"Polyak             -> {self.config['polyak']:>6} \n"
             f"Learning Starts    -> {self.config['learning_starts']:>6} \n"
