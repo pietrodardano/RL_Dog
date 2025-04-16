@@ -1,22 +1,35 @@
-
-[INFO]: Completed setting up the environment...
-[ALIENGO-INFO] Recording videos during training.
-        video_folder: /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/../../runs//AlienGo_safety_15_04_17:57/videos
-        step_trigger: lambda step: step % args_cli.video_interval == 0 and step > 0
-        video_length: 500
-        disable_logger: True
-[skrl:INFO] Environment wrapper: Isaac Lab (single-agent)
+[ALIENGO-INFO] Start training
+[ALIENGO-DDPG] Source code saved in /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/../../runs//AlienGo_safety_16_04_17:32/DDPG_config.txt
+[ALIENGO-DDPG] Source code saved in /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/../../runs//AlienGo_safety_16_04_17:32/RewardsCfg_source.txt
+[ALIENGO-DDPG] Source code saved in /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/../../runs//AlienGo_safety_16_04_17:32/ObservationsCfg_source.txt
+/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/utils/passive_env_checker.py:131: UserWarning: WARN: The obs returned by the `reset()` method was expecting a numpy array, actual type: <class 'torch.Tensor'>
+  logger.warn(
+/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/spaces/box.py:240: UserWarning: WARN: Casting input x to numpy array.
+  gym.logger.warn("Casting input x to numpy array.")
+/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/utils/passive_env_checker.py:159: UserWarning: WARN: The obs returned by the `reset()` method is not within the observation space.
+  logger.warn(f"{pre} is not within the observation space.")
+  0%|                                                                                                                                                                                         | 0/21000 [00:00<?, ?it/s]/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/utils/passive_env_checker.py:228: UserWarning: WARN: Expects `terminated` signal to be a boolean, actual type: <class 'torch.Tensor'>
+  logger.warn(
+/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/utils/passive_env_checker.py:232: UserWarning: WARN: Expects `truncated` signal to be a boolean, actual type: <class 'torch.Tensor'>
+  logger.warn(
+/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/utils/passive_env_checker.py:131: UserWarning: WARN: The obs returned by the `step()` method was expecting a numpy array, actual type: <class 'torch.Tensor'>
+  logger.warn(
+/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/utils/passive_env_checker.py:159: UserWarning: WARN: The obs returned by the `step()` method is not within the observation space.
+  logger.warn(f"{pre} is not within the observation space.")
+/home/user/isaacsim/exts/omni.isaac.ml_archive/pip_prebundle/gymnasium/utils/passive_env_checker.py:246: UserWarning: WARN: The reward returned by `step()` must be a float, int, np.integer or np.floating, actual type: <class 'torch.Tensor'>
+  logger.warn(
+  0%|                                                                                                                                                                                         | 0/21000 [00:00<?, ?it/s]
 Traceback (most recent call last):
-  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 93, in <module>
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 94, in <module>
     main()
-  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 85, in main
-    agent = Aliengo_DDPG(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SKRL_env_WRAPPER inside
-  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 80, in __init__
-    self.agent      = self._create_agent()
-  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 111, in _create_agent
-    agent = DDPG(
-  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/my_ddpg.py", line 100, in __init__
-    super().__init__(
-  File "/home/user/miniconda3/envs/isaacenv/lib/python3.10/site-packages/skrl/agents/torch/base.py", line 64, in __init__
-    model.to(model.device)
-AttributeError: 'collections.OrderedDict' object has no attribute 'to'
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_main.py", line 89, in main
+    agent.train_sequential(timesteps=21000, headless=args_cli.my_headless)
+  File "/home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_safety/aliengo_ddpg.py", line 157, in train_sequential
+    trainer.train()
+  File "/home/user/miniconda3/envs/isaacenv/lib/python3.10/site-packages/skrl/trainers/torch/sequential.py", line 86, in train
+    self.single_agent_train()
+  File "/home/user/miniconda3/envs/isaacenv/lib/python3.10/site-packages/skrl/trainers/torch/base.py", line 203, in single_agent_train
+    self.agents.record_transition(
+TypeError: DDPG.record_transition() got an unexpected keyword argument 'actions'
+[skrl:INFO] Closing environment
+[skrl:INFO] Environment closed
