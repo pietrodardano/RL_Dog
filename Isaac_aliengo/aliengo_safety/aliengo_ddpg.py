@@ -33,14 +33,24 @@ class DeterministicActor(DeterministicMixin, Model):
         Model.__init__(self, observation_space, action_space, device)
         DeterministicMixin.__init__(self, clip_actions)
 
-        self.net = nn.Sequential(nn.Linear(self.num_observations, 256),
-                                 nn.ReLU(),
-                                 nn.Linear(256, 256),
-                                 nn.ReLU(),
-                                 nn.Linear(256, 128),
-                                 nn.ReLU(),
-                                 nn.Linear(128, self.num_actions),
-                                 nn.Tanh())
+        # self.net = nn.Sequential(nn.Linear(self.num_observations, 256),
+        #                          nn.ELU(),
+        #                          nn.Linear(256, 256),
+        #                          nn.ELU(),
+        #                          nn.Linear(256, 128),
+        #                          nn.ELU(),
+        #                          nn.Linear(128, self.num_actions)
+        # )
+        
+        self.l1         = nn.Linear(self.num_observations, 256)
+        self.l2         = nn.ELU()
+        self.l3         = nn.Linear(256, 256)
+        self.l4         = nn.ELU()
+        self.l5         = nn.Linear(256, 128)
+        self.l6         = nn.ELU()
+        self.mean_layer = nn.Linear(128, self.num_actions)  
+        self.net = nn.Sequential(self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.mean_layer)
+        
 
     def compute(self, inputs, role):
         return self.net(inputs["states"]), {}
@@ -51,12 +61,13 @@ class Critic(DeterministicMixin, Model):
         DeterministicMixin.__init__(self, clip_actions)
 
         self.net = nn.Sequential(nn.Linear(self.num_observations + 0, 256), # 0 for action_space
-                                 nn.ReLU(),
+                                 nn.ELU(),
                                  nn.Linear(256, 256),
-                                 nn.ReLU(),
+                                 nn.ELU(),
                                  nn.Linear(256, 128),
-                                 nn.ReLU(),
-                                 nn.Linear(128, 1))
+                                 nn.ELU(),
+                                 nn.Linear(128, 1)
+        )
         
     def compute(self, inputs, role):
         return self.net(inputs["states"]), {}
@@ -84,11 +95,26 @@ class Aliengo_DDPG:
         memory = RandomMemory(memory_size=15625, num_envs=self.env.num_envs, device=self.device)
         
         # DDPG reqquires 4 models:   https://skrl.readthedocs.io/en/latest/api/agents/ddpg.html#models
-        model_nn["policy"]        = torch.load("/home/user/Documents/GitHub/RL_Dog/Policies/FULL_STATE__NN_v3.pt", weights_only=True)   # !!!
+        model_nn["policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)
+        pretrained_state_dict = torch.load("/home/user/Documents/GitHub/RL_Dog/Policies/FULL_STATE__NN_v2.pt", 
+                                           map_location=self.device)
+        
+        ## ---- THIS ----
+        ## Filter out unexpected keys and missing keys
+        # model_state_dict = model_nn["policy"].state_dict()
+        # filtered_state_dict = {k: v for k, v in pretrained_state_dict.items() if k in model_state_dict}
+        # model_state_dict.update(filtered_state_dict)
+        # model_nn["policy"].load_state_dict(model_state_dict)
+        
+        ## ---- OR ----
+        model_nn["policy"].migrate(state_dict=pretrained_state_dict)
+        
         model_nn["target_policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)  # Needed
         model_nn["critic"]        = Critic(self.env.observation_space, self.env.action_space, self.device)
         model_nn["target_critic"] = Critic(self.env.observation_space, self.env.action_space, self.device)
-        model_nn["device"]= self.device
+        
+        # model_nn["device"]= self.device
+        
         self.config = {
             "exploration": {"noise": OrnsteinUhlenbeckNoise(theta=0.15, sigma=0.1, base_scale=0.5, device=self.device)},
             "gradient_steps": 1,

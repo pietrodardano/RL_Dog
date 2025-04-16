@@ -44,6 +44,7 @@ from colorama import Fore, Style
 
 def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(Fore.BLUE + f"[DEBUG] Using device: {device}" + Style.RESET_ALL)
     
     gym.register(
         id=args_cli.task,
