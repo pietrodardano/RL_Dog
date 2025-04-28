@@ -19,14 +19,14 @@ Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelpret
 
 - **NVIDIA's [Isaac Lab](https://isaac-sim.github.io/IsaacLab/)**:  provides the high-performance simulation environment necessary for training our models. Refer to the [Orbit](https://isaac-orbit.github.io/) and [Isaac Sim](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) pages for more information. <br>
 
-#### Config: 
-##### WorkStation 1
+### Configs: 
+#### WorkStation 1
 - CPU: AMD® Ryzen 9 7950x
 - GPU: 2x NVIDIA RTX A6000 Ada Generation, 48Gb GDDR6, 300W
 - RAM: 192Gb
 - OS: Ubuntu 22.04.4 LTS
 
-##### WorkStation 2
+#### WorkStation 2
 - CPU: Intel Xeon(R) Gold 6226R
 - GPU: NVIDIA RTX A6000, 48Gb GDDR6, 300W
 - RAM: 128Gb
@@ -52,8 +52,20 @@ For a comprehensive understanding of the principles and techniques used in this 
 - Insights into recent advancements are discussed in [reference 2](https://arxiv.org/html/2308.12517v2).
 
 ## Project Structure
-
- === TBD ===
+```
+RL_Dog
+├── Gymn_aliengo          # Envs and tasks for training using OpenAI Gym
+├── Isaac_aliengo         # Envs and tasks for training using NVIDIA's Isaac Sim
+├── Policies              # Trained Policies
+├── assets                # Assets such as models and textures
+├── isaaclab              # Just to access to Isaac Lab code, like if forked
+│   ├── isaaclab_assets
+│   ├── isaaclab_tasks
+├── runs                  # Logs and results from training runs
+├── LICENSE
+├── README.md
+├── SETUP_GUIDE.md        # Setup guide for the project
+```
 
 ## Installation
 
