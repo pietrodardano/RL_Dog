@@ -143,14 +143,14 @@ class RewardsCfg_ORIGINAL:
     
 #############################
 
-def bool_joint_not_deviating(env: ManagerBasedRLEnv, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot")) -> torch.Tensor:
-    """Penalize joint positions that deviate from the default one."""
-    # extract the used quantities (to enable type-hinting)
-    asset: Articulation = env.scene[asset_cfg.name]
-    # compute out of limits constraints
-    angle = asset.data.joint_pos[:, asset_cfg.joint_ids] - asset.data.default_joint_pos[:, asset_cfg.joint_ids]
-    satisfy = angle.abs() < 0.45 # 0.45 rad == 25.7 deg
-    return torch.sum(torch.abs(angle), dim=1)
+# def bool_joint_not_deviating(env: ManagerBasedRLEnv, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot")) -> torch.Tensor:
+#     """Penalize joint positions that deviate from the default one."""
+#     # extract the used quantities (to enable type-hinting)
+#     asset: Articulation = env.scene[asset_cfg.name]
+#     # compute out of limits constraints
+#     angle = asset.data.joint_pos[:, asset_cfg.joint_ids] - asset.data.default_joint_pos[:, asset_cfg.joint_ids]
+#     satisfy = angle.abs() < 0.45 # 0.45 rad == 25.7 deg
+#     return torch.sum(torch.abs(angle), dim=1)
 
 def bool_not_undesired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
     # extract the used quantities (to enable type-hinting)
@@ -260,7 +260,7 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
     observations : ObsCfg           = ObsCfg()
  
     events : EventCfg               = EventCfg()
-    rewards : RewardsCfg_ORIGINAL     = RewardsCfg_ORIGINAL()
+    rewards : RewardsCfg_SAFETY     = RewardsCfg_SAFETY()  
     terminations : TerminationsCfg  = TerminationsCfg()
     curriculum : CurriculumCfg      = CurriculumCfg()
 

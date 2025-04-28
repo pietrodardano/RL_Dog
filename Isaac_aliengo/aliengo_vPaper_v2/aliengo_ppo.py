@@ -80,8 +80,15 @@ class Shared(GaussianMixin, DeterministicMixin, Model):
             return self.value_layer(shared_output), {}
         
 class PPO_aliengo:
-    def __init__(self, env: ManagerBasedRLEnv, config=PPO_DEFAULT_CONFIG, device="cuda", name="AlienGo_XX", directory=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../runs"), verbose=0):
-        self.env        = wrap_env(env, verbose=verbose, wrapper="isaaclab")
+    def __init__(self, 
+                 env: ManagerBasedRLEnv, 
+                 config=PPO_DEFAULT_CONFIG, 
+                 device="cuda", 
+                 name="AlienGo_XX", 
+                 directory=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../runs"), 
+                 verbose=0):
+        
+        self.env        = wrap_env(env, wrapper="isaaclab")
         self.name       = name
         self.directory  = directory
         self.config     = config
@@ -147,20 +154,9 @@ class PPO_aliengo:
     def mytrain(self, timesteps=20000, headless=False, mode="sequential"):
         cfg_trainer = {"timesteps": timesteps, "headless": headless}
         trainer_cls = SequentialTrainer(cfg=cfg_trainer, env=self.env, agents=self.agent) if mode == "sequential" else ParallelTrainer(cfg=cfg_trainer, env=self.env, agents=self.agent)
-        directory = self._setup_experiment_directory(mode)
+        directory   = self.directory
         self._save_source_code(directory, mode)
         return trainer_cls
-    
-    def _setup_experiment_directory(self, training_type):
-        experiment_name = self.name
-        timestamp = datetime.datetime.now().strftime("%d_%m_%H:%M")
-        directory = f"{self.directory}{experiment_name}_{timestamp}"
-        try:
-            os.makedirs(directory, exist_ok=True)
-        except Exception as e:
-            print(Fore.RED + f'[ALIENGO-PPO] {e}' + Style.RESET_ALL)
-
-        return directory
 
     def _save_source_code(self, directory, training_type):
         file_paths = {

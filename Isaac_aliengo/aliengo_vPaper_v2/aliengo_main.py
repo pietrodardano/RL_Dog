@@ -58,7 +58,7 @@ def main():
     env_cfg.viewer.resolution = (640, 480)
     
     name_task = args_cli.task
-    directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../runs")
+    directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../runs")
     
     try:
         if args_cli.video:
@@ -84,11 +84,10 @@ def main():
         pass
     
     # Here the env will be wrapped with the SKRL wrapper 
-    agent = PPO_aliengo(env=env, device=device, name=name_task, save_path=directory, verbose=1) # SKRL_env_WRAPPER inside
+    agent = PPO_aliengo(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SKRL_env_WRAPPER inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
     agent.train_sequential(timesteps=21000, headless=args_cli.my_headless)
-
     env.close()
     
 if __name__ == "__main__":

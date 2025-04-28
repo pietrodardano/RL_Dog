@@ -87,7 +87,6 @@ def main():
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
     agent.train_sequential(timesteps=21000, headless=args_cli.my_headless)
-
     env.close()
     
 if __name__ == "__main__":
