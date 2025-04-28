@@ -109,7 +109,7 @@ class Aliengo_DDPG:
         ## ---- OR ----
         model_nn["policy"].migrate(state_dict=pretrained_state_dict)
         
-        model_nn["target_policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)  # Needed
+        #model_nn["target_policy"] = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)  # Needed
         model_nn["critic"]        = Critic(self.env.observation_space, self.env.action_space, self.device)
         model_nn["target_critic"] = Critic(self.env.observation_space, self.env.action_space, self.device)
         

@@ -279,7 +279,7 @@ class DDPG(Agent):
     def record_transition(
         self,
         states: torch.Tensor,
-        # actions: torch.Tensor,
+        actions: torch.Tensor,
         rewards: torch.Tensor,
         next_states: torch.Tensor,
         terminated: torch.Tensor,
@@ -310,7 +310,7 @@ class DDPG(Agent):
         :type timesteps: int
         """
         super().record_transition(
-            states, rewards, next_states, terminated, truncated, infos, timestep, timesteps
+            states, actions, rewards, next_states, terminated, truncated, infos, timestep, timesteps
         )        # !
         # actions (after states)
 
