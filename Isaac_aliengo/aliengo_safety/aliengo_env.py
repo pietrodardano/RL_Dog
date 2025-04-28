@@ -157,7 +157,7 @@ def bool_not_undesired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor
     # check if contact force is above threshold
     net_contact_forces = contact_sensor.data.net_forces_w_history
     is_contact = torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold
-    return 1 - is_contact.float()
+    return 1.00 - is_contact.float()
 
 def bool_desired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
     # extract the used quantities (to enable type-hinting)
@@ -190,7 +190,6 @@ class RewardsCfg_SAFETY:
         weight=1,
         params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
     )
-    
     
     
 ### Commands ###
@@ -265,11 +264,11 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
 
     def __post_init__(self):
         """Initialize additional environment settings."""
-        self.decimation = 4  # env decimation -> 50 Hz control
-        self.sim.dt = 0.005  # simulation timestep -> 200 Hz physics
+        self.decimation = 4         # env decimation -> 50 Hz control
+        self.sim.dt = 0.005         # simulation timestep -> 200 Hz physics
         self.sim.render_interval = self.decimation
         self.episode_length_s = 3.0
         #self.sim.physics_material = self.scene.terrain.physics_material
 
         # viewer settings
-        self.viewer.eye = (5.0, 1.0, 2.0)
+        self.viewer.eye = (1.0, 1.0, 2.0)
