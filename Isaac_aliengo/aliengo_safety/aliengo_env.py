@@ -156,7 +156,7 @@ def bool_not_undesired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor
     contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
     # check if contact force is above threshold
     net_contact_forces = contact_sensor.data.net_forces_w_history
-    is_contact = torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold
+    is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
     return 1.00 - is_contact.float()
 
 def bool_desired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
@@ -164,13 +164,14 @@ def bool_desired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: 
     contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
     # check if contact force is above threshold
     net_contact_forces = contact_sensor.data.net_forces_w_history
-    is_contact = torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold
+    #is_contact = torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold
+    is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
     return is_contact.float()
 
 @configclass
 class RewardsCfg_SAFETY:
     """
-    Boolean 
+    Booleans
     """
     # Constraint to be in touch to the ground
     desired_calf_contacts = RewTerm(
@@ -271,4 +272,4 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
         #self.sim.physics_material = self.scene.terrain.physics_material
 
         # viewer settings
-        self.viewer.eye = (1.0, 1.0, 2.0)
+        self.viewer.eye = (5.0, 1.0, 2.0)
