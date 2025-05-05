@@ -1,7 +1,7 @@
 @configclass
 class RewardsCfg_SAFETY:
     """
-    Boolean 
+    Booleans
     """
     # Constraint to be in touch to the ground
     desired_calf_contacts = RewTerm(
