@@ -34,7 +34,8 @@ from isaaclab.envs        import ManagerBasedRLEnv
 from isaaclab.utils.dict  import print_dict
 
 from aliengo_env  import AliengoEnvCfg
-from aliengo_ddpg import Aliengo_DDPG
+#from aliengo_ddpg import Aliengo_DDPG
+from aliengo_ddpg_v0 import Aliengo_DDPG
 
 import os
 import torch

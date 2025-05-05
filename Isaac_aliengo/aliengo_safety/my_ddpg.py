@@ -201,12 +201,12 @@ class DDPG(Agent):
         super().init(trainer_cfg=trainer_cfg)
         self.set_mode("eval")
 
-        # create tensors in memory
+        # create tensors in memory   BUFFER
         if self.memory is not None:
             self.memory.create_tensor(name="states", size=self.observation_space, dtype=torch.float32)
             self.memory.create_tensor(name="next_states", size=self.observation_space, dtype=torch.float32)
             # self.memory.create_tensor(name="actions", size=self.action_space, dtype=torch.float32)      # not
-            self.memory.create_tensor(name="rewards", size=1, dtype=torch.float32)                      
+            self.memory.create_tensor(name="rewards", size=1, dtype=torch.int)
             self.memory.create_tensor(name="terminated", size=1, dtype=torch.bool)
             self.memory.create_tensor(name="truncated", size=1, dtype=torch.bool)  # maybe to remove
 
@@ -398,10 +398,19 @@ class DDPG(Agent):
                     target_q_values, _, _ = self.target_critic.act(            # was target_critics
                         {"states": sampled_next_states}, role="critic"   # , "taken_actions": next_actions
                     )
+                    reach_set = sampled_rewards%2
+                    avoid_set = sampled_rewards//2
                     target_values = (
-                        sampled_rewards * target_q_values
+                        reach_set * (not avoid_set) * 1 + ((not reach_set) * (not avoid_set)) * target_q_values #+ avoid_set*0 
+                        # PASS THEM AS BOOLEAN !!
+                        # sampled_rewards * target_q_values
                         # * (sampled_terminated | sampled_truncated).logical_not()
                     )
+                    # ABOVE TO DO
+                        # target_value(x) = 0 if x in avoid_set,
+                        # target_value(x) = 1 if x in reach_set,
+                        # target_value(x) = target_critic(x’) otherwise
+
 
                 # compute critic loss
                 critic_values, _, _ = self.critic.act(

@@ -151,6 +151,7 @@ class RewardsCfg_ORIGINAL:
 #     satisfy = angle.abs() < 0.45 # 0.45 rad == 25.7 deg
 #     return torch.sum(torch.abs(angle), dim=1)
 
+
 def bool_not_undesired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
     # extract the used quantities (to enable type-hinting)
     contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
@@ -159,6 +160,7 @@ def bool_not_undesired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor
     is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
     return 1.00 - is_contact.float()
 
+# Usefull for Reac target in reach-avoid formulation
 def bool_desired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
     # extract the used quantities (to enable type-hinting)
     contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
@@ -167,6 +169,7 @@ def bool_desired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: 
     #is_contact = torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold
     is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
     return is_contact.float()
+
 
 @configclass
 class RewardsCfg_SAFETY:
@@ -191,6 +194,10 @@ class RewardsCfg_SAFETY:
         weight=1,
         params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
     )
+    
+    avoid_set = not(thigh_not_contacts * body_not_contacts)
+    reach_set = desired_calf_contacts # che velocità joints siano sotto certa soglia (10e-2 or -3)
+    reward = avoid_set*2 + reach_set
     
     
 ### Commands ###
