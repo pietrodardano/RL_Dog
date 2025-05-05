@@ -1,13 +1,18 @@
 # RL_Dog 
-Reinforced-Learning for autonomous walking and suddenly-stopping of Legged Robot (AlienGO by Unitree)
+Reinforced-Learning for autonomous walking and suddenly-stopping for Legged Robot (AlienGo by Unitree)
 
-Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024
+Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024 + Spring 2025
 
 ## Methodology
-- **Proximal Policy Optimization (PPO)** and **TODO: Constraints as Terminations (CAT)**: For detailed information on these methods, refer to the [research paper](https://arxiv.org/pdf/2403.18765).
+- **Proximal Policy Optimization (PPO)**.
 - **Architecture Inspired by ANYmal (ETH-RSL)**: We modeled our architecture based on the principles outlined in the [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
-- **SKRL**: We utilized the SKRL library to streamline our reinforcement learning implementations. More details can be found in the SKRL [documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
-- **Python + PyTorch**: Our primary programming languages and framework for development and deep learning.
+- **SKRL**: wrapper for algorithms and agents. More details can be found in the SKRL [documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
+- **Python + PyTorch**: Programming languages and framework for development and deep learning.
+
+## Repository
+**Branches**:
+- **main**: Currently mantained and working code: IsaacSim 4.5, IsaacLab 2.0.2 (v2.1.0 is now available but not yet integrated here)
+- **IsaacLab_v1.1**: Code from summer 2024, Legacy versions: IsaacSim 4.1, IsaacLab 1.1.0
 
 ## Setup
 ### Workstation
@@ -31,6 +36,14 @@ Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelpret
 - GPU: NVIDIA RTX A6000, 48Gb GDDR6, 300W
 - RAM: 128Gb
 - OS: Ubuntu 20.04 LTS
+
+#### WorkStation 3
+- CPU: Intel Xeon(R) Gold 5415+
+- GPU: NVIDIA RTX A4000, 14Gb GDDR6, 140W
+- RAM: 128Gb
+- OS: Ubuntu 20.04 LTS
+
+#### Nvidia & CUDA: Driver Version: 570.124.06 | CUDA Version: 12.8 
 
 Please note that IsaacLab contains many OpenAI Gym and Gymnasium features. It is common to find attributes, methods and classes related to them. <br>
 It contains [RSL_RL](https://github.com/leggedrobotics/rsl_rl/tree/master) too, helpfull framework by ETH for legged robot training.
