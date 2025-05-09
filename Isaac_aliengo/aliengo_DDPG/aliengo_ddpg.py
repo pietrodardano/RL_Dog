@@ -21,12 +21,12 @@ from my_ddpg import DDPG, DDPG_DEFAULT_CONFIG
 #from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
 
 from isaaclab.envs  import ManagerBasedRLEnv
-from aliengo_env    import RewardsCfg_SAFETY, RewardsCfg_ORIGINAL
+from aliengo_env    import RewardsCfg_ORIGINAL
 from aliengo_env    import ObsCfg
 
 set_seed() 
 
-_RewardsCfg = RewardsCfg_SAFETY
+_RewardsCfg = RewardsCfg_ORIGINAL
 
 # define models (deterministic models) using mixins
 class DeterministicActor(DeterministicMixin, Model):
@@ -34,12 +34,22 @@ class DeterministicActor(DeterministicMixin, Model):
         Model.__init__(self, observation_space, action_space, device)
         DeterministicMixin.__init__(self, clip_actions)
 
-        self.net = nn.Sequential(nn.Linear(self.num_observations, 256),
-                                 nn.ReLU(),
-                                 nn.Linear(256, 256),
-                                 nn.ReLU(),
-                                 nn.Linear(256, self.num_actions),
-                                 nn.Tanh())
+        # self.net = nn.Sequential(nn.Linear(self.num_observations, 256),
+        #                          nn.ReLU(),
+        #                          nn.Linear(256, 256),
+        #                          nn.ReLU(),
+        #                          nn.Linear(256, self.num_actions),
+        #                          nn.Tanh())
+        
+        self.l1         = nn.Linear(self.num_observations, 256)
+        self.l2         = nn.ELU()
+        self.l3         = nn.Linear(256, 256)
+        self.l4         = nn.ELU()
+        self.l5         = nn.Linear(256, 128)
+        self.l6         = nn.ELU()
+        self.mean_layer = nn.Linear(128, self.num_actions)  
+        self.net = nn.Sequential(self.l1, self.l2, self.l3, self.l4, self.l5, self.l6, self.mean_layer)
+        
 
     def compute(self, inputs, role):
         return self.net(inputs["states"]), {}

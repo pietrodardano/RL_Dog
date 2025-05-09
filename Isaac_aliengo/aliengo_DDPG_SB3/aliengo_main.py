@@ -5,19 +5,19 @@ conda activate isaacenv
 cd
 cd IsaacLab/
 
-./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_DDPG/aliengo_main.py --num_envs 1028 --headless --enable_cameras
+./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 1028 --headless --enable_cameras
 
-./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_DDPG/aliengo_main.py --num_envs 1028 --headless --enable_cameras
+./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 1028 --headless --enable_cameras
 
 """
 
 from isaaclab.app import AppLauncher
 
 import argparse
-parser = argparse.ArgumentParser(description='AlienGo_ddpg Env Config')
+parser = argparse.ArgumentParser(description='AlienGo_ddpg_sb3 Env Config')
 parser.add_argument('--num_envs',       type=int,       default=2056,              help='Number of environments')
 parser.add_argument('--env_spacing',    type=float,     default=2.5,               help='Environment spacing')
-parser.add_argument("--task",           type=str,       default="AlienGo_ddpg",    help="Name of the task.")
+parser.add_argument("--task",           type=str,       default="AlienGo_ddpg_sb3",    help="Name of the task.")
 
 parser.add_argument("--my_headless",    action="store_true",    default=True,      help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=True,      help="Record videos during training.")
@@ -34,7 +34,7 @@ from isaaclab.envs        import ManagerBasedRLEnv
 from isaaclab.utils.dict  import print_dict
 
 from aliengo_env  import AliengoEnvCfg
-from aliengo_ddpg import Aliengo_DDPG
+from aliengo_ddpg_sb3 import Aliengo_DDPG_sb3
 
 import os
 import torch
@@ -83,7 +83,7 @@ def main():
         pass
     
     # Here the env is wrapped with the SKRL wrapper
-    agent = Aliengo_DDPG(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SKRL_env_WRAPPER inside
+    agent = Aliengo_DDPG_sb3(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SB3 wrapper inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
     agent.train_sequential(timesteps=14000, headless=args_cli.my_headless)

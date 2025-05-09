@@ -4,9 +4,13 @@ Reinforced-Learning for autonomous walking and suddenly-stopping for Legged Robo
 Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024 + Spring 2025
 
 ## Methodology
-- **Proximal Policy Optimization (PPO)**.
-- **Architecture Inspired by ANYmal (ETH-RSL)**: We modeled our architecture based on the principles outlined in the [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
-- **SKRL**: wrapper for algorithms and agents. More details can be found in the SKRL [documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
+- **Algorithms and Agents:**
+    - Proximal Policy Optimization (PPO)
+    - Deep Deterministic Policy Gradient (DDPG)
+    - Twind_Delayed_DDPG (TD3)
+- **Architecture Inspired by ANYmal (ETH-RSL)**: Our architecture is based on the principles outlined in the [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
+- **SKRL**: Wrapper for algorithms and agents. [Documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
+- **SB3**: Using it since SKRL is giving problems with DDPG. [Documentation](https://stable-baselines3.readthedocs.io/en/v1.0/guide/algos.html)
 - **Python + PyTorch**: Programming languages and framework for development and deep learning.
 
 ## Repository
