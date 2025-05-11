@@ -273,7 +273,7 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
     def __post_init__(self):
         """Initialize additional environment settings."""
         self.decimation = 4         # env decimation -> 50 Hz control
-        self.sim.dt = 0.005         # simulation timestep -> 200 Hz physics
+        self.sim.dt = 0.002         # simulation timestep -> 200 Hz physics
         self.sim.render_interval = self.decimation
         self.episode_length_s = 3.0
         #self.sim.physics_material = self.scene.terrain.physics_material
