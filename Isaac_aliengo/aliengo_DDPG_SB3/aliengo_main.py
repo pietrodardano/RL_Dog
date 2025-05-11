@@ -34,7 +34,7 @@ from isaaclab.envs        import ManagerBasedRLEnv
 from isaaclab.utils.dict  import print_dict
 
 from aliengo_env  import AliengoEnvCfg
-from aliengo_ddpg_sb3 import Aliengo_DDPG_sb3
+from Isaac_aliengo.aliengo_DDPG_SB3.aliengo_td3_sb3 import Aliengo_TD3
 
 import os
 import torch
@@ -83,7 +83,7 @@ def main():
         pass
     
     # Here the env is wrapped with the SKRL wrapper
-    agent = Aliengo_DDPG_sb3(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SB3 wrapper inside
+    agent = Aliengo_TD3(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SB3 wrapper inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
     agent.train_sequential(timesteps=14000, headless=args_cli.my_headless)
