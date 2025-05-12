@@ -226,20 +226,20 @@ class EventCfg:
         func=mdp.reset_root_state_uniform,
         params={"pose_range": {"x": (-0.1, 0.1), "z": (-0.32, 0.18), # it was z(-0.22, 12)
                                "roll": (-0.15, 0.15), "pitch": (-0.15, 0.15),}, #cancel if want it planar
-                "velocity_range": {"x": (-0.4, 0.9), "y": (-0.4, 0.4)},}, 
+                "velocity_range": {"x": (-0.4, 0.8), "y": (-0.4, 0.4)},}, 
         mode="reset",
     )
     reset_random_joint = EventTerm(
         func=mdp.reset_joints_by_offset,
-        params={"position_range": (-0.40, 0.40), "velocity_range": (-0.4, 0.4)},
+        params={"position_range": (-0.3, 0.3), "velocity_range": (-0.4, 0.4)},
         mode="reset",
     )
-    push_robot = EventTerm(
-        func=mdp.push_by_setting_velocity,
-        params={"velocity_range": {"x": (-0.6, 0.6), "y": (-0.5, 0.5), "z": (-0.15, 0.1)}},
-        mode="interval",
-        interval_range_s=(0.3,2.2),
-    )
+    # push_robot = EventTerm(
+    #     func=mdp.push_by_setting_velocity,
+    #     params={"velocity_range": {"x": (-0.6, 0.6), "y": (-0.5, 0.5), "z": (-0.15, 0.1)}},
+    #     mode="interval",
+    #     interval_range_s=(0.3,2.2),
+    # )
     
 ### TERMINATION ###
 @configclass
@@ -270,9 +270,9 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
 
     def __post_init__(self):
         """Initialize additional environment settings."""
-        self.decimation = 4         # env decimation -> 50 Hz control
-        self.sim.dt = 0.002         # simulation timestep -> 200 Hz physics
-        self.sim.render_interval = self.decimation
+        self.sim.dt = 0.002                             # simulation timestep
+        self.decimation = 10                            # environment_step_size = sim.dt * self.decimation
+        self.sim.render_interval = self.decimation      # rendering_step_size   = sim.dt * self.decimation
         self.episode_length_s = 3.0
         #self.sim.physics_material = self.scene.terrain.physics_material
 

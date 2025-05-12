@@ -102,7 +102,7 @@ class Aliengo_DDPG:
             "batch_size": 4096,
             "discount_factor": 0.99,
             "polyak": 0.099,  # 0.005, now higher since we know the policy
-            # "actor_learning_rate": 5e-4,
+            "actor_learning_rate": 4e-4,
             "critic_learning_rate": 5e-4,
             "random_timesteps": 80,
             "learning_starts": 80,

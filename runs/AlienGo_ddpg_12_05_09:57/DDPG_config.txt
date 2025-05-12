@@ -1,6 +1,6 @@
 ####### SEQUENTIAL TRAINING ####### 
 
-Num envs           ->   1028 
+Num envs           ->    256 
 -------------------- DDPG CONFIG ------------------- 
 Batch_Size         ->   4096 
 Critic_Lrate       -> 0.0005 
