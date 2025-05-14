@@ -110,19 +110,19 @@ class RewardsCfg_ORIGINAL:
     ## Rewards
     # Track linear velocity: 0
     track_lin_vel_xy_exp = RewTerm(
-        func=mdp.track_lin_vel_xy_exp, weight=1.0, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+        func=mdp.track_lin_vel_xy_exp, weight=0.9, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     # Track angular velocity: 0
     track_ang_vel_z_exp = RewTerm(
-        func=mdp.track_ang_vel_z_exp, weight=0.9, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+        func=mdp.track_ang_vel_z_exp, weight=0.8, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     
     ## Penalities
-    lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,      weight=-0.6)
-    ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,     weight=-0.05)
-    dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)
-    dof_acc_l2      = RewTerm(func=mdp.joint_acc_l2,      weight=-2.5e-7)
-    action_rate_l2  = RewTerm(func=mdp.action_rate_l2,    weight=-0.01)
+    # lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,      weight=-0.6)
+    # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,     weight=-0.05)
+    # dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)
+    # dof_acc_l2      = RewTerm(func=mdp.joint_acc_l2,      weight=-2.5e-7)
+    # action_rate_l2  = RewTerm(func=mdp.action_rate_l2,    weight=-0.01)
     
     dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.4) 
     
@@ -133,11 +133,11 @@ class RewardsCfg_ORIGINAL:
         params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.40}, # "target": 0.35         target not a param of base_pos_z
     )
     
-    undesired_thigh_contacts = RewTerm(
-        func=mdp.undesired_contacts,
-        weight=-0.6,
-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_thigh"), "threshold": 1.0},
-    )
+    # undesired_thigh_contacts = RewTerm(
+    #     func=mdp.undesired_contacts,
+    #     weight=-0.6,
+    #     params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_thigh"), "threshold": 1.0},
+    # )
     undesired_body_contacts = RewTerm(
         func=mdp.undesired_contacts,
         weight=-1.0,
@@ -270,7 +270,7 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
 
     def __post_init__(self):
         """Initialize additional environment settings."""
-        self.sim.dt = 0.002                             # simulation timestep
+        self.sim.dt = 0.001                             # simulation timestep
         self.decimation = 10                            # environment_step_size = sim.dt * self.decimation
         self.sim.render_interval = self.decimation      # rendering_step_size   = sim.dt * self.decimation
         self.episode_length_s = 3.0

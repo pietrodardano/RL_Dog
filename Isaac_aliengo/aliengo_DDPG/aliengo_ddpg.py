@@ -55,7 +55,7 @@ class DeterministicActor(DeterministicMixin, Model):
         return self.net(inputs["states"]), {}
 
 class Critic(DeterministicMixin, Model):
-    def __init__(self, observation_space, action_space, device, clip_actions=False):
+    def __init__(self, observation_space, action_space, device, clip_actions=True):
         Model.__init__(self, observation_space, action_space, device)  # 0 for action_space
         DeterministicMixin.__init__(self, clip_actions)
 
@@ -88,7 +88,7 @@ class Aliengo_DDPG:
         
     def _create_agent(self):
         model_nn = {}
-        memory = RandomMemory(memory_size=1385, num_envs=self.env.num_envs, device=self.device)
+        memory = RandomMemory(memory_size=32, num_envs=self.env.num_envs, device=self.device)
         
         # DDPG reqquires 4 models:   https://skrl.readthedocs.io/en/latest/api/agents/ddpg.html#models
         model_nn["policy"]        = DeterministicActor(self.env.observation_space, self.env.action_space, self.device)
@@ -99,17 +99,17 @@ class Aliengo_DDPG:
         self.config = {
             "exploration": {"noise": OrnsteinUhlenbeckNoise(theta=0.15, sigma=0.1, base_scale=0.5, device=self.device)},
             "gradient_steps": 1,
-            "batch_size": 4096,
+            "batch_size": 64,             # set to 4096
             "discount_factor": 0.99,
-            "polyak": 0.099,  # 0.005, now higher since we know the policy
-            "actor_learning_rate": 4e-4,
-            "critic_learning_rate": 5e-4,
-            "random_timesteps": 80,
-            "learning_starts": 80,
+            "polyak": 0.005,
+            "actor_learning_rate": 2e-4,
+            "critic_learning_rate": 2e-4,
+            "random_timesteps": 100,
+            "learning_starts": 100,
             "state_preprocessor": RunningStandardScaler,
             "state_preprocessor_kwargs": {"size": self.env.observation_space, "device": self.device},
             "experiment": {
-            "write_interval": 1000,
+            "write_interval": 1000,     # TensorBoard writing interval (timesteps)
             "checkpoint_interval": 10000,
             "directory": self.directory
             }
