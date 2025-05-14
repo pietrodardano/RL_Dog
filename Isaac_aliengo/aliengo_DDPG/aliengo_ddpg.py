@@ -30,7 +30,7 @@ _RewardsCfg = RewardsCfg_ORIGINAL
 
 # define models (deterministic models) using mixins
 class DeterministicActor(DeterministicMixin, Model):
-    def __init__(self, observation_space, action_space, device, clip_actions=False):
+    def __init__(self, observation_space, action_space, device, clip_actions=True):
         Model.__init__(self, observation_space, action_space, device)
         DeterministicMixin.__init__(self, clip_actions)
 

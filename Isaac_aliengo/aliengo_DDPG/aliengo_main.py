@@ -42,6 +42,16 @@ import datetime
 import gymnasium as gym
 from colorama import Fore, Style
 
+import tensorboard
+
+"""
+cmd -->     tensorboard --logdir=/home/user/Documents/GitHub/RL_Dog/runs    (SERVER)
+            or
+            tensorboard --logdir=/home/rluser/RL_Dog/runs       (DELL)
+
+            http://localhost:6006
+"""
+
 def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(Fore.BLUE + f"[DEBUG] Using device: {device}" + Style.RESET_ALL)
