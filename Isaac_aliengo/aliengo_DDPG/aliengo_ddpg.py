@@ -17,16 +17,16 @@ from skrl.utils import set_seed
 from skrl.envs.loaders.torch import load_isaaclab_env
 from skrl.envs.wrappers.torch import wrap_env
 
-from my_ddpg import DDPG, DDPG_DEFAULT_CONFIG
-#from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
+#from my_ddpg import DDPG, DDPG_DEFAULT_CONFIG
+from skrl.agents.torch.ddpg import DDPG, DDPG_DEFAULT_CONFIG
 
 from isaaclab.envs  import ManagerBasedRLEnv
-from aliengo_env    import RewardsCfg_ORIGINAL
+from aliengo_env    import RewardsCfg
 from aliengo_env    import ObsCfg
 
 set_seed() 
 
-_RewardsCfg = RewardsCfg_ORIGINAL
+_RewardsCfg = RewardsCfg
 
 # define models (deterministic models) using mixins
 class DeterministicActor(DeterministicMixin, Model):

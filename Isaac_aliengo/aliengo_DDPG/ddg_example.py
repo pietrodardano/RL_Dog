@@ -68,9 +68,9 @@ memory = RandomMemory(memory_size=15625, num_envs=env.num_envs, device=device)
 # DDPG requires 4 models, visit its documentation for more details
 # https://skrl.readthedocs.io/en/latest/api/agents/ddpg.html#models
 models = {}
-models["policy"] = DeterministicActor(env.observation_space, env.action_space, device)
+models["policy"]        = DeterministicActor(env.observation_space, env.action_space, device)
 models["target_policy"] = DeterministicActor(env.observation_space, env.action_space, device)
-models["critic"] = Critic(env.observation_space, env.action_space, device)
+models["critic"]        = Critic(env.observation_space, env.action_space, device)
 models["target_critic"] = Critic(env.observation_space, env.action_space, device)
 
 

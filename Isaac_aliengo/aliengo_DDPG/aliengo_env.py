@@ -103,7 +103,7 @@ class ObsCfg:
 
 ### REWARDS ###
 @configclass
-class RewardsCfg_ORIGINAL:
+class RewardsCfg:
     """
     Reward configuration for the AlienGo environment.
     """
@@ -264,14 +264,14 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
     observations : ObsCfg           = ObsCfg()
  
     events : EventCfg               = EventCfg()
-    rewards : RewardsCfg_ORIGINAL     = RewardsCfg_ORIGINAL()  
+    rewards : RewardsCfg            = RewardsCfg()  
     terminations : TerminationsCfg  = TerminationsCfg()
     curriculum : CurriculumCfg      = CurriculumCfg()
 
     def __post_init__(self):
         """Initialize additional environment settings."""
         self.sim.dt = 0.001                             # simulation timestep
-        self.decimation = 10                            # environment_step_size = sim.dt * self.decimation
+        self.decimation = 5                            # environment_step_size = sim.dt * self.decimation
         self.sim.render_interval = self.decimation      # rendering_step_size   = sim.dt * self.decimation
         self.episode_length_s = 3.0
         #self.sim.physics_material = self.scene.terrain.physics_material
