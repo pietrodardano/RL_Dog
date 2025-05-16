@@ -10,8 +10,12 @@ Since the amount of opensource code for IsaacLab is still quite limited, this pr
 ## Methodology
 - **Algorithms and Agents:**
     - Proximal Policy Optimization (PPO)
+        - SKRL: Works
     - Deep Deterministic Policy Gradient (DDPG)
+        - SKRL: To fix NaN generation
+        - SB3: To init and derive from TD3
     - Twind_Delayed_DDPG (TD3)
+        - SB3: To init
 - **Architecture Inspired by ANYmal (ETH-RSL)**: Our architecture is based on the principles outlined in the [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
 - **SKRL**: Wrapper for algorithms and agents. [Documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
 - **SB3**: Using it since SKRL is giving problems with DDPG. [Documentation](https://stable-baselines3.readthedocs.io/en/v1.0/guide/algos.html)
