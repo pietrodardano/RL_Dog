@@ -5,7 +5,7 @@ conda activate isaacenv
 cd
 cd IsaacLab/
 
-./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_DDPG/aliengo_main.py --num_envs 256 --headless --enable_cameras
+./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_DDPG/aliengo_main.py --num_envs 4 --headless --enable_cameras
 
 ./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_DDPG/aliengo_main.py --num_envs 1028 --headless --enable_cameras
 
@@ -20,7 +20,7 @@ parser.add_argument('--env_spacing',    type=float,     default=2.5,            
 parser.add_argument("--task",           type=str,       default="AlienGo_ddpg",    help="Name of the task.")
 
 parser.add_argument("--my_headless",    action="store_true",    default=True,      help="GUI or not GUI.")
-parser.add_argument("--video",          action="store_true",    default=True,      help="Record videos during training.")
+parser.add_argument("--video",          action="store_true",    default=False,      help="Record videos during training.")
 parser.add_argument("--video_length",   type=int,               default=500,       help="Length of the recorded video (in steps).")
 parser.add_argument("--video_interval", type=int,               default=4000,     help="Interval between video recordings (in steps).")
 
@@ -29,7 +29,7 @@ AppLauncher.add_app_launcher_args(parser)
 args_cli        = parser.parse_args()
 app_launcher    = AppLauncher(args_cli)
 simulation_app  = app_launcher.app
-
+ 
 from isaaclab.envs        import ManagerBasedRLEnv
 from isaaclab.utils.dict  import print_dict
 
@@ -85,6 +85,9 @@ def main():
             print_dict(video_kwargs, nesting=4)
             env = gym.wrappers.RecordVideo(env, **video_kwargs)
         else:
+            timestamp = datetime.datetime.now().strftime("%d_%m_%H:%M")
+            log_dir = f"{directory}/{name_task}_{timestamp}/"
+            os.makedirs(log_dir, exist_ok=True)
             env = ManagerBasedRLEnv(cfg=env_cfg)
             
     except Exception as e:

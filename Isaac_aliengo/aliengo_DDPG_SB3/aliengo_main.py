@@ -5,9 +5,9 @@ conda activate isaacenv
 cd
 cd IsaacLab/
 
-./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 1028 --headless --enable_cameras
+./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 512 --headless --enable_cameras
 
-./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 1028 --headless --enable_cameras
+./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 512 --headless --enable_cameras
 
 """
 
@@ -34,7 +34,7 @@ from isaaclab.envs        import ManagerBasedRLEnv
 from isaaclab.utils.dict  import print_dict
 
 from aliengo_env  import AliengoEnvCfg
-from Isaac_aliengo.aliengo_DDPG_SB3.aliengo_td3_sb3 import Aliengo_TD3
+from aliengo_td3_sb3 import Aliengo_TD3
 
 import os
 import torch
@@ -86,7 +86,7 @@ def main():
     agent = Aliengo_TD3(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SB3 wrapper inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
-    agent.train_sequential(timesteps=14000, headless=args_cli.my_headless)
+    agent.my_train(timesteps=14000, headless=args_cli.my_headless)
     env.close()
     
 if __name__ == "__main__":

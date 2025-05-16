@@ -113,9 +113,9 @@ class RewardsCfg:
         func=mdp.track_lin_vel_xy_exp, weight=0.9, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     # Track angular velocity: 0
-    track_ang_vel_z_exp = RewTerm(
-        func=mdp.track_ang_vel_z_exp, weight=0.8, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
-    )
+    # track_ang_vel_z_exp = RewTerm(
+    #     func=mdp.track_ang_vel_z_exp, weight=0.8, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+    # )
     
     ## Penalities
     # lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,      weight=-0.6)
@@ -138,11 +138,11 @@ class RewardsCfg:
     #     weight=-0.6,
     #     params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_thigh"), "threshold": 1.0},
     # )
-    undesired_body_contacts = RewTerm(
-        func=mdp.undesired_contacts,
-        weight=-1.0,
-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
-    )
+    # undesired_body_contacts = RewTerm(
+    #     func=mdp.undesired_contacts,
+    #     weight=-1.0,
+    #     params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
+    # )
     
     
 #############################
@@ -156,46 +156,46 @@ class RewardsCfg:
 #     satisfy = angle.abs() < 0.45 # 0.45 rad == 25.7 deg
 #     return torch.sum(torch.abs(angle), dim=1)
 
-def bool_not_undesired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
-    # extract the used quantities (to enable type-hinting)
-    contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
-    # check if contact force is above threshold
-    net_contact_forces = contact_sensor.data.net_forces_w_history
-    is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
-    return 1.00 - is_contact.float()
+# def bool_not_undesired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
+#     # extract the used quantities (to enable type-hinting)
+#     contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
+#     # check if contact force is above threshold
+#     net_contact_forces = contact_sensor.data.net_forces_w_history
+#     is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
+#     return 1.00 - is_contact.float()
 
-def bool_desired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
-    # extract the used quantities (to enable type-hinting)
-    contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
-    # check if contact force is above threshold
-    net_contact_forces = contact_sensor.data.net_forces_w_history
-    #is_contact = torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold
-    is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
-    return is_contact.float()
+# def bool_desired_contacts(env: ManagerBasedRLEnv, threshold: float, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
+#     # extract the used quantities (to enable type-hinting)
+#     contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
+#     # check if contact force is above threshold
+#     net_contact_forces = contact_sensor.data.net_forces_w_history
+#     #is_contact = torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold
+#     is_contact = torch.any(torch.max(torch.norm(net_contact_forces[:, :, sensor_cfg.body_ids], dim=-1), dim=1)[0] > threshold, dim=1)
+#     return is_contact.float()
 
-@configclass
-class RewardsCfg_SAFETY:
-    """
-    Booleans
-    """
-    # Constraint to be in touch to the ground
-    desired_calf_contacts = RewTerm(
-        func=bool_desired_contacts,
-        weight=1,
-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_calf"), "threshold": 1.0},
-    )
+# @configclass
+# class RewardsCfg_SAFETY:
+#     """
+#     Booleans
+#     """
+#     # Constraint to be in touch to the ground
+#     desired_calf_contacts = RewTerm(
+#         func=bool_desired_contacts,
+#         weight=1,
+#         params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_calf"), "threshold": 1.0},
+#     )
     
-    # Constraints to not touch the ground with thighs and body
-    thigh_not_contacts = RewTerm(
-        func=bool_not_undesired_contacts,
-        weight=1,
-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_thigh"), "threshold": 1.0},
-    )
-    body_not_contacts = RewTerm(
-        func=bool_not_undesired_contacts,
-        weight=1,
-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
-    )
+#     # Constraints to not touch the ground with thighs and body
+#     thigh_not_contacts = RewTerm(
+#         func=bool_not_undesired_contacts,
+#         weight=1,
+#         params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_thigh"), "threshold": 1.0},
+#     )
+#     body_not_contacts = RewTerm(
+#         func=bool_not_undesired_contacts,
+#         weight=1,
+#         params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
+#     )
     
     
 ### Commands ###
@@ -222,18 +222,18 @@ class EventCfg:
     """Configuration for events."""
     
     # Reset the robot with initial velocity
-    reset_scene = EventTerm(
-        func=mdp.reset_root_state_uniform,
-        params={"pose_range": {"x": (-0.1, 0.1), "z": (-0.32, 0.18), # it was z(-0.22, 12)
-                               "roll": (-0.15, 0.15), "pitch": (-0.15, 0.15),}, #cancel if want it planar
-                "velocity_range": {"x": (-0.4, 0.8), "y": (-0.4, 0.4)},}, 
-        mode="reset",
-    )
-    reset_random_joint = EventTerm(
-        func=mdp.reset_joints_by_offset,
-        params={"position_range": (-0.3, 0.3), "velocity_range": (-0.4, 0.4)},
-        mode="reset",
-    )
+    # reset_scene = EventTerm(
+    #     func=mdp.reset_root_state_uniform,
+    #     params={"pose_range": {"x": (-0.1, 0.1), "z": (-0.32, 0.18), # it was z(-0.22, 12)
+    #                            "roll": (-0.15, 0.15), "pitch": (-0.15, 0.15),}, #cancel if want it planar
+    #             "velocity_range": {"x": (-0.2, 0.2), "y": (-0.2, 0.2)},}, 
+    #     mode="reset",
+    # )
+    # reset_random_joint = EventTerm(
+    #     func=mdp.reset_joints_by_offset,
+    #     params={"position_range": (-0.2, 0.2), "velocity_range": (-0.2, 0.2)},
+    #     mode="reset",
+    # )
     # push_robot = EventTerm(
     #     func=mdp.push_by_setting_velocity,
     #     params={"velocity_range": {"x": (-0.6, 0.6), "y": (-0.5, 0.5), "z": (-0.15, 0.1)}},
@@ -270,7 +270,7 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
 
     def __post_init__(self):
         """Initialize additional environment settings."""
-        self.sim.dt = 0.001                             # simulation timestep
+        self.sim.dt = 0.002                             # simulation timestep
         self.decimation = 5                            # environment_step_size = sim.dt * self.decimation
         self.sim.render_interval = self.decimation      # rendering_step_size   = sim.dt * self.decimation
         self.episode_length_s = 3.0

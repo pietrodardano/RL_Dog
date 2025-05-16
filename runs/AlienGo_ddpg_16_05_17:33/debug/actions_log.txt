@@ -1,0 +1,303 @@
+# Actions log for the first 50 iterations
+# Format: [iteration][env_idx][action_idx] = value
+
+Iteration 0:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 1:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 2:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 3:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 4:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 5:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 6:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 7:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 8:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 9:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 10:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 11:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 12:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 13:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 14:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 15:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 16:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 17:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 18:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 19:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 20:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 21:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 22:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 23:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 24:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 25:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 26:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 27:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 28:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 29:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 30:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 31:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 32:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 33:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 34:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 35:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 36:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 37:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 38:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 39:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 40:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 41:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 42:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 43:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 44:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 45:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 46:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 47:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 48:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
+Iteration 49:
+  Env 0: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 1: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 2: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+  Env 3: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+
