@@ -1,4 +1,12 @@
 # RL_Dog 
+[![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
+[![IsaacLab](https://img.shields.io/badge/IsaacLab-2.0.2-orange.svg)](https://isaac-sim.github.io/IsaacLab/)
+[![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
+[![Linux platform](https://img.shields.io/badge/platform-linux--64-red.svg)](https://releases.ubuntu.com/22.04/)
+[![skrl](https://img.shields.io/badge/skrl-1.4.3-yellow.svg)](https://skrl.readthedocs.io/en/latest/)
+[![SB3](https://img.shields.io/badge/SB3-2.6.0-green.svg)](https://github.com/DLR-RM/stable-baselines3)
+
+
 Reinforced-Learning for autonomous walking and suddenly-stopping for Legged Robot (AlienGo by Unitree)
 
 Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024 + Spring 2025
@@ -26,48 +34,18 @@ Since the amount of opensource code for IsaacLab is still quite limited, this pr
 - **main**: Currently mantained and working code: IsaacSim 4.5, IsaacLab 2.0.2 (v2.1.0 is now available but not yet integrated here)
 - **IsaacLab_v1.1**: Code from summer 2024, Legacy versions: IsaacSim 4.1, IsaacLab 1.1.0
 
-## Setup
-### Workstation
-
-[![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
-[![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
-[![Linux platform](https://img.shields.io/badge/platform-linux--64-orange.svg)](https://releases.ubuntu.com/22.04/)
-[![skrl](https://img.shields.io/badge/skrl-1.4.3-green.svg)](https://skrl.readthedocs.io/en/latest/)
-
-- **NVIDIA's [Isaac Lab](https://isaac-sim.github.io/IsaacLab/)**:  provides the high-performance simulation environment necessary for training our models. Refer to the [Orbit](https://isaac-orbit.github.io/) and [Isaac Sim](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) pages for more information. <br>
-
 ### Configs: 
-#### WorkStation 1
-- CPU: AMD® Ryzen 9 7950x
-- GPU: 2x NVIDIA RTX A6000 Ada Generation, 48Gb GDDR6, 300W
-- RAM: 192Gb
-- OS: Ubuntu 22.04.4 LTS
-
-#### WorkStation 2
-- CPU: Intel Xeon(R) Gold 6226R
-- GPU: NVIDIA RTX A6000, 48Gb GDDR6, 300W
-- RAM: 128Gb
-- OS: Ubuntu 20.04 LTS
-
-#### WorkStation 3
-- CPU: Intel Xeon(R) Gold 5415+
-- GPU: NVIDIA RTX A4000, 14Gb GDDR6, 140W
-- RAM: 128Gb
-- OS: Ubuntu 20.04 LTS
+| WorkStation    | CPU                        | GPU                                         | RAM    | OS                   |
+|--------------- |--------------------------- |---------------------------------------------|--------|----------------------|
+| WS 1  | AMD® Ryzen 9 7950x         | 2x NVIDIA RTX A6000 Ada Gen, 48Gb GDDR6, 300W | 192Gb  | Ubuntu 22.04.4 LTS   |
+| WS 2  | Intel Xeon(R) Gold 6226R   | NVIDIA RTX A6000, 48Gb GDDR6, 300W           | 128Gb  | Ubuntu 20.04 LTS     |
+| WS 3  | Intel Xeon(R) Gold 5415+   | NVIDIA RTX A4000, 14Gb GDDR6, 140W           | 128Gb  | Ubuntu 20.04 LTS     |
 
 #### Nvidia & CUDA: Driver Version: 570.124.06 | CUDA Version: 12.8 
 
+**NVIDIA's [Isaac Lab](https://isaac-sim.github.io/IsaacLab/)**: allows for parallel simulation of multiple environments necessary for training our models. Refer to the [Orbit](https://isaac-orbit.github.io/) and [Isaac Sim](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) pages for more information. <br>
+
 Please note that IsaacLab contains many OpenAI Gym and Gymnasium features. It is common to find attributes, methods and classes related to them. <br>
-It contains [RSL_RL](https://github.com/leggedrobotics/rsl_rl/tree/master) too, helpfull framework by ETH for legged robot training.
-
-### Laptop (lower grade simulations)
-**Remark**: for the time being i am mainly working on the Isaac Sim+Lab version for a more complete and realistic simulation. I'll try my best to implement it soon.
-
-- **OpenAI Gymnasium**: Since Isaac Sim is almost not suitable for being installed on **laptops**, I opted for the lightweight Gymnasium as a simulation environment. It supports Python 3.10 and Ubuntu 22.04 and it's well documented. Obviously, it is far from a realistic simulation, as Isaac Sim is, but for quick tests and trainings, I consider it a good trade-off considering my hardware limitations. For more details on Gymnasium, visit the [official documentation](https://gymnasium.farama.org/).
-
-### `Why not Isaac Gym?`: 
-It requires Ubuntu 20.04 or earlier and Python 3.8 or 3.9. Having installed Ubuntu 22.04, I excluded this option. <br>
-It is deprecated too, everyone now-a-day is transitioning to IsaacLab 
 
 
 ## Understanding the Project
