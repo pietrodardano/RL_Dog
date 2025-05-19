@@ -7,7 +7,7 @@ Since the amount of opensource code for IsaacLab is still quite limited, this pr
 
 #### **If you find it useful, please consider giving a star to the repository.** :smile: :star:
 
-## Methodology
+## Methodology and Latest Updates
 - **Algorithms and Agents:**
     - Proximal Policy Optimization (PPO)
         - SKRL: Works
