@@ -127,11 +127,11 @@ class RewardsCfg:
     dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.4) 
     
     ## Penalities but with mdp.obs
-    base_height_l2 = RewTerm(
-        func=mdp.base_height_l2,
-        weight=-0.8,
-        params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.40}, # "target": 0.35         target not a param of base_pos_z
-    )
+    # base_height_l2 = RewTerm(
+    #     func=mdp.base_height_l2,
+    #     weight=-0.8,
+    #     params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.40}, # "target": 0.35         target not a param of base_pos_z
+    # )
     
     # undesired_thigh_contacts = RewTerm(
     #     func=mdp.undesired_contacts,
@@ -268,7 +268,7 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
     terminations : TerminationsCfg  = TerminationsCfg()
     curriculum : CurriculumCfg      = CurriculumCfg()
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Initialize additional environment settings."""
         self.sim.dt = 0.002                             # simulation timestep
         self.decimation = 5                            # environment_step_size = sim.dt * self.decimation

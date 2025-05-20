@@ -20,7 +20,7 @@ parser.add_argument('--env_spacing',    type=float,     default=2.5,            
 parser.add_argument("--task",           type=str,       default="AlienGo_ddpg",    help="Name of the task.")
 
 parser.add_argument("--my_headless",    action="store_true",    default=True,      help="GUI or not GUI.")
-parser.add_argument("--video",          action="store_true",    default=False,      help="Record videos during training.")
+parser.add_argument("--video",          action="store_true",    default=True,      help="Record videos during training.")
 parser.add_argument("--video_length",   type=int,               default=500,       help="Length of the recorded video (in steps).")
 parser.add_argument("--video_interval", type=int,               default=4000,     help="Interval between video recordings (in steps).")
 

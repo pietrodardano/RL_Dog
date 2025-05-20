@@ -48,7 +48,6 @@ app_launcher    = AppLauncher(args_cli)
 simulation_app  = app_launcher.app
 
 from isaaclab.envs        import ManagerBasedRLEnv
-from isaaclab.envs        import ManagerBasedRLEnvCfg
 from isaaclab.utils.dict  import print_dict
 
 from aliengo_env import AliengoEnvCfg

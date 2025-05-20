@@ -25,7 +25,7 @@ from isaaclab.envs  import ManagerBasedRLEnv
 from aliengo_env    import RewardsCfg
 from aliengo_env    import ObsCfg
 
-set_seed() 
+set_seed(42)
 
 _RewardsCfg = RewardsCfg
 
