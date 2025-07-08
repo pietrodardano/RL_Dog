@@ -6,6 +6,10 @@
 [![skrl](https://img.shields.io/badge/skrl-1.4.3-yellow.svg)](https://skrl.readthedocs.io/en/latest/)
 [![SB3](https://img.shields.io/badge/SB3-2.6.0-green.svg)](https://github.com/DLR-RM/stable-baselines3)
 
+---------------------------------------------------------------------------------------------------
+
+## 07/2025 Edit: This project is temporarly on pause
+---------------------------------------------------------------------------------------------------
 
 Reinforced-Learning for autonomous walking and suddenly-stopping for Legged Robot (AlienGo by Unitree)
 
