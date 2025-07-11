@@ -1,6 +1,6 @@
 # RL_Dog 
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
-[![IsaacLab](https://img.shields.io/badge/IsaacLab-2.0.2-orange.svg)](https://isaac-sim.github.io/IsaacLab/)
+[![IsaacLab](https://img.shields.io/badge/IsaacLab-2.1.0-orange.svg)](https://isaac-sim.github.io/IsaacLab/)
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
 [![Linux platform](https://img.shields.io/badge/platform-linux--64-red.svg)](https://releases.ubuntu.com/22.04/)
 [![skrl](https://img.shields.io/badge/skrl-1.4.3-yellow.svg)](https://skrl.readthedocs.io/en/latest/)
@@ -12,9 +12,9 @@ Reinforced-Learning for autonomous walking and suddenly-stopping for Legged Robo
 
 Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024 + Spring 2025
 
-Since the amount of opensource code for IsaacLab is still quite limited, this project can be seen as and example (even if still work in progress) on how to create Manager_Based_RL_Envs with different algorithms.
+Since the amount of example code for IsaacLab is still quite limited, this project can be seen as and example (even if still work in progress) on how to create Manager_Based_RL_Envs with different algorithms.
 
-#### **If you find it useful, please consider giving a star to the repository.** :smile: :star:
+#### If you find it useful, please consider giving a star to the repository. :smile: :star:
 
 ## Methodology and Latest Updates
 - **Algorithms and Agents:**
