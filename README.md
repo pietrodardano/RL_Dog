@@ -77,11 +77,11 @@ RL_Dog
 ## Installation
 
 To set up the project, follow these steps:
-1. Setup your OS and Environment
-    Instructions in the file: [IsaacSim-Setup_Guide](https://github.com/pietrodardano/RL_Dog/blob/main/SETUP_GUIDE.md) or TODO_Gymnasium-Setup_Guide
-1. Clone the repository:
+1. Follow the installation [GUIDE](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html) of IsaacSim and IsaacLab
+2. Clone this repository: (Remark! **main** branch is for IsaacSim > v4.5 and IsaacLab > v2.0.0)
    ```
    git clone https://github.com/pietrodardano/RL_Dog.git
    ```
-
-
+3. Check that your assets (URDF, config) are installed locally, in your IsaacLab folder in isaaclab_assets directory.
+4. I am using Miniconda, be sure to change or use the same environment name.
+5. Launch the simulation (headless or not) with the scripts that you can find at the beginnning of each **main.py**
