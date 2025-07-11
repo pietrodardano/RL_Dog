@@ -18,7 +18,7 @@ This script demonstrates the environment for a quadruped robot AlienGo.
 
     ./isaaclab.sh -p /home/robotac22/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
 
-    ./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
+    ./isaaclab.sh -p /home/user/Documents/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
 
 
 

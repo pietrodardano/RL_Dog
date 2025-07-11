@@ -6,7 +6,7 @@ cd
 cd IsaacLab
 
 ./isaaclab.sh -p scripts/tools/convert_urdf.py\
-  ~/Documents/GitHub/RL_Dog/assets/URDF/aliengo_black.urdf \
+  ~/Documents/RL_Dog/assets/URDF/aliengo_black.urdf \
   source/isaaclab_assets/data/Robots/aliengo/aliengo_black.usd \
   --merge-joints \
   --joint-stiffness 0.0 \

@@ -5,7 +5,7 @@ conda activate isaacenv
 cd
 cd IsaacLab/
 
-./isaaclab.sh -p /home/user/Documents/GitHub/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 512 --headless --enable_cameras
+./isaaclab.sh -p /home/user/Documents/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 512 --headless --enable_cameras
 
 ./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_DDPG_SB3/aliengo_main.py --num_envs 512 --headless --enable_cameras
 
