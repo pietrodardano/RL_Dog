@@ -8,9 +8,6 @@
 
 ---------------------------------------------------------------------------------------------------
 
-## 07/2025 Edit: This project is temporarly on pause
----------------------------------------------------------------------------------------------------
-
 Reinforced-Learning for autonomous walking and suddenly-stopping for Legged Robot (AlienGo by Unitree)
 
 Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelprete.github.io/) - UniTn - Summer 2024 + Spring 2025
@@ -38,19 +35,16 @@ Since the amount of opensource code for IsaacLab is still quite limited, this pr
 - **main**: Currently mantained and working code: IsaacSim 4.5, IsaacLab 2.0.2 (v2.1.0 is now available but not yet integrated here)
 - **IsaacLab_v1.1**: Code from summer 2024, Legacy versions: IsaacSim 4.1, IsaacLab 1.1.0
 
-### Configs: 
+## Configs tested: 
+#### Nvidia & CUDA: Driver Version: 570.124.06 | CUDA Version: 12.8 
+#### If Nvidia Blackwell: Driver 570.133.20 server-open (!!) | CUDA Version 12.8
+
 | WorkStation    | CPU                        | GPU                                         | RAM    | OS                   |
 |--------------- |--------------------------- |---------------------------------------------|--------|----------------------|
 | WS 1  | AMD® Ryzen 9 7950x         | 2x NVIDIA RTX A6000 Ada Gen, 48Gb GDDR6, 300W | 192Gb  | Ubuntu 22.04.4 LTS   |
 | WS 2  | Intel Xeon(R) Gold 6226R   | NVIDIA RTX A6000, 48Gb GDDR6, 300W           | 128Gb  | Ubuntu 20.04 LTS     |
 | WS 3  | Intel Xeon(R) Gold 5415+   | NVIDIA RTX A4000, 14Gb GDDR6, 140W           | 128Gb  | Ubuntu 20.04 LTS     |
-
-#### Nvidia & CUDA: Driver Version: 570.124.06 | CUDA Version: 12.8 
-
-**NVIDIA's [Isaac Lab](https://isaac-sim.github.io/IsaacLab/)**: allows for parallel simulation of multiple environments necessary for training our models. Refer to the [Orbit](https://isaac-orbit.github.io/) and [Isaac Sim](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) pages for more information. <br>
-
-Please note that IsaacLab contains many OpenAI Gym and Gymnasium features. It is common to find attributes, methods and classes related to them. <br>
-
+| WS 4  | AMD® Ryzen Thrd.rip 7970x  | NVIDIA RTX PRO Blackwell A6000, 96GB GDDR7   | 128Gb  | Ubuntu 22.04.4 LTS   |
 
 ## Understanding the Project
 
@@ -85,3 +79,10 @@ To set up the project, follow these steps:
 3. Check that your assets (URDF, config) are installed locally, in your IsaacLab folder in isaaclab_assets directory.
 4. I am using Miniconda, be sure to change or use the same environment name.
 5. Launch the simulation (headless or not) with the scripts that you can find at the beginnning of each **main.py**
+
+## Extra
+
+**NVIDIA's [Isaac Lab](https://isaac-sim.github.io/IsaacLab/)**: allows for parallel simulation of multiple environments necessary for training our models. Refer to the [Orbit](https://isaac-orbit.github.io/) and [Isaac Sim](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) pages for more information. <br>
+
+Please note that IsaacLab contains many OpenAI Gym and Gymnasium features. It is common to find attributes, methods and classes related to them. <br>
+
