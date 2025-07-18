@@ -104,18 +104,10 @@ class BaseSceneCfg(InteractiveSceneCfg):
     # LIGHTS
 
     dome_light = AssetBaseCfg(
-
         prim_path="/World/DomeLight",
-
-        spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=600.0),
+        spawn=sim_utils.DomeLightCfg(color=(0.9, 0.9, 0.9), intensity=1200.0),
     )
     
-    # cfg_light_distant = sim_utils.DistantLightCfg(
-    #     intensity=3000.0,
-    #     color=(0.75, 0.75, 0.75),
-    # )
-    # cfg_light_distant.func("/World/lightDistant", cfg_light_distant, translation=(1, 0, 10))
-
 ######### MDP - RL #########
 
 ### ACTIONS ###
@@ -274,14 +266,14 @@ class RewardsCfg:
     """Reward terms for the MDP."""
                             ######## Positive weights: TRACKING the BASE Velocity (set to 0) ########
     track_lin_vel_xy_exp = RewTerm(
-        func=mdp.track_lin_vel_xy_exp, weight=1.5, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+        func=mdp.track_lin_vel_xy_exp, weight=4.0, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     track_ang_vel_z_exp = RewTerm(
-        func=mdp.track_ang_vel_z_exp, weight=0.9, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+        func=mdp.track_ang_vel_z_exp, weight=0.4, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     track_height = RewTerm(
         func=height_goal,
-        weight=0.8,
+        weight=2,
         params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42, "allowance_radius": 0.02}, # "target": 0.35         target not a param of base_pos_z
     )
 
@@ -291,22 +283,22 @@ class RewardsCfg:
     #     weight=-0.95,
     #     params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42}, # "target": 0.35         target not a param of base_pos_z
     # )
-    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-2)
-    body_lin_acc_l2 = RewTerm(func=mdp.body_lin_acc_l2,  weight=-2)
+    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-1.5)
+    # body_lin_acc_l2 = RewTerm(func=mdp.body_lin_acc_l2,  weight=-1.5)
     
-    lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,     weight=-0.6)
-    ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
+    # lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,     weight=-0.6)
+    # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
     
     #### JOINTS PENALITIES
-    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.7)
-    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.4)
+    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.6)
+    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.8)
     #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
 
     #action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.01)
 
     undesired_thigh_contacts = RewTerm(
         func=mdp.undesired_contacts,
-        weight=-0.6,
+        weight=-1.0,
         params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_thigh"), "threshold": 1.0},
     )
     undesired_body_contacts = RewTerm(

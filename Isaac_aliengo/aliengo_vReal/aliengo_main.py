@@ -24,7 +24,7 @@ parser.add_argument("--task",           type=str,       default="AlienGo_vPaper2
 parser.add_argument("--my_headless",       action="store_true",    default=True,    help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=True,    help="Record videos during training.")
 parser.add_argument("--video_length",   type=int,               default=600,     help="Length of the recorded video (in steps).")
-parser.add_argument("--video_interval", type=int,               default=10000,   help="Interval between video recordings (in steps).")
+parser.add_argument("--video_interval", type=int,               default=15000,   help="Interval between video recordings (in steps).")
 
 ### Launch IsaacSim ###
 AppLauncher.add_app_launcher_args(parser)
@@ -88,7 +88,7 @@ def main():
     agent = PPO_aliengo(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SKRL_env_WRAPPER inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
-    agent.train_sequential(timesteps=21000, headless=args_cli.my_headless)
+    agent.train_sequential(timesteps=31000, headless=args_cli.my_headless)
     env.close()
     
 if __name__ == "__main__":
