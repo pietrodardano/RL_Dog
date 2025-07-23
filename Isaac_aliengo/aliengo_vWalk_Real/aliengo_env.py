@@ -46,10 +46,12 @@ global HEIGHT_SCAN
 #Print IMU data in report_debug file
 DEBUG_IMU = False
 
-ROUGH_TERRAIN = 1
+ROUGH_TERRAIN = 0
 HEIGHT_SCAN = 0
 
 base_command = {}  # for keyboard inputs
+
+EPISODE_LENGTH = 8.0
 
 ######### SCENE #########
 terrain_type = "generator" if ROUGH_TERRAIN else "plane"
@@ -131,14 +133,14 @@ class CommandsCfg:
 
     base_velocity = mdp.UniformVelocityCommandCfg( # inherits from CommandTermCfg
         asset_name="robot",
-        resampling_time_range=(0.0, 0.0),
+        resampling_time_range=(5.0, EPISODE_LENGTH),
         rel_standing_envs=0.02,
         rel_heading_envs=1.0,
         heading_command=True,
         heading_control_stiffness=0.5,
         debug_vis=True,
         ranges=mdp.UniformVelocityCommandCfg.Ranges(
-            lin_vel_x=(0.0, 1.5), lin_vel_y=(-0.4, 0.4), ang_vel_z=(-0.1, 0.1), heading=(0, 0)
+            lin_vel_x=(-0.6, 1.5), lin_vel_y=(-0.4, 0.4), ang_vel_z=(-0.1, 0.1), heading=(0, 0)
         ),
     )
 
@@ -354,7 +356,7 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
         self.decimation = 4  # env decimation -> 50 Hz control
         self.sim.dt = 0.005  # simulation timestep -> 200 Hz physics
         self.sim.render_interval = self.decimation
-        self.episode_length_s = 8.0
+        self.episode_length_s = EPISODE_LENGTH
         #self.sim.physics_material = self.scene.terrain.physics_material
 
         # viewer settings
