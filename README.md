@@ -1,6 +1,6 @@
 # RL_Dog 
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
-[![IsaacLab](https://img.shields.io/badge/IsaacLab-2.1.0-orange.svg)](https://isaac-sim.github.io/IsaacLab/)
+[![IsaacLab](https://img.shields.io/badge/IsaacLab-2.2.0-orange.svg)](https://isaac-sim.github.io/IsaacLab/)
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
 [![Linux platform](https://img.shields.io/badge/platform-linux--64-red.svg)](https://releases.ubuntu.com/22.04/)
 [![skrl](https://img.shields.io/badge/skrl-1.4.3-yellow.svg)](https://skrl.readthedocs.io/en/latest/)
@@ -32,7 +32,7 @@ Since the amount of example code for IsaacLab is still quite limited, this proje
 
 ## Repository
 **Branches**:
-- **main**: Currently mantained and working code: IsaacSim 4.5, IsaacLab 2.0.2 (v2.1.0 is now available but not yet integrated here)
+- **main**: Currently mantained and working code: IsaacSim 4.5, IsaacLab 2.1.0
 - **IsaacLab_v1.1**: Code from summer 2024, Legacy versions: IsaacSim 4.1, IsaacLab 1.1.0
 
 ## Configs tested: 
