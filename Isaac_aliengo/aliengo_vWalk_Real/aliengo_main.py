@@ -55,7 +55,7 @@ def main():
     
     env_cfg = AliengoEnvCfg()
     env_cfg.scene.num_envs = args_cli.num_envs
-    env_cfg.viewer.resolution = (640, 480)
+    env_cfg.viewer.resolution = (1280, 720) 
     
     name_task = args_cli.task
     directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../runs")

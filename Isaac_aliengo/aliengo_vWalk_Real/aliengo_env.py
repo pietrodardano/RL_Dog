@@ -196,12 +196,12 @@ class ObservationsCfg:
         imu_like_data = ObsTerm(
             func=imu_acc_b,
             params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"])},
-            noise=Unoise(n_min=-0.08, n_max=0.08),
+            noise=Unoise(n_min=-0.07, n_max=0.07),
         )
             
         ### Joint state 
         joint_pos = ObsTerm(func=mdp.joint_pos_rel, noise=Unoise(n_min=-0.01, n_max=0.01))
-        joint_vel = ObsTerm(func=mdp.joint_vel_rel, noise=Unoise(n_min=-0.06, n_max=0.06))
+        joint_vel = ObsTerm(func=mdp.joint_vel_rel, noise=Unoise(n_min=-0.05, n_max=0.05))
 
         actions   = ObsTerm(func=mdp.last_action)
 
@@ -276,8 +276,8 @@ class RewardsCfg:
     )
     track_height = RewTerm(
         func=height_goal,
-        weight=1.5,
-        params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42, "allowance_radius": 0.04}, # "target": 0.35         target not a param of base_pos_z
+        weight=2.0,
+        params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42, "allowance_radius": 0.03}, # "target": 0.35         target not a param of base_pos_z
     )
 
     #### BODY PENALITIES
@@ -294,7 +294,7 @@ class RewardsCfg:
     
     #### JOINTS PENALITIES
     dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.1)
-    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.08)
+    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.06)
     #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
     
     # dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)
@@ -305,7 +305,7 @@ class RewardsCfg:
     # To eoncourage to lift the feet
     feet_air_time = RewTerm(
         func=mdp.feet_air_time,
-        weight=0.25,
+        weight=0.3,
         params={
             "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_calf"),
             "command_name": "base_velocity",
