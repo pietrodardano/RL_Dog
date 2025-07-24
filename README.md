@@ -1,6 +1,6 @@
 # RL_Dog 
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-4.5-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
-[![IsaacLab](https://img.shields.io/badge/IsaacLab-2.2.0-orange.svg)](https://isaac-sim.github.io/IsaacLab/)
+[![IsaacLab](https://img.shields.io/badge/IsaacLab-2.1.0-orange.svg)](https://isaac-sim.github.io/IsaacLab/)
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
 [![Linux platform](https://img.shields.io/badge/platform-linux--64-red.svg)](https://releases.ubuntu.com/22.04/)
 [![skrl](https://img.shields.io/badge/skrl-1.4.3-yellow.svg)](https://skrl.readthedocs.io/en/latest/)
@@ -25,7 +25,7 @@ Since the amount of example code for IsaacLab is still quite limited, this proje
         - SB3: To init and derive from TD3
     - Twind_Delayed_DDPG (TD3)
         - SB3: To fix and do first train
-- **Architecture Inspired by ANYmal (ETH-RSL)**: Our architecture is based on the principles outlined in the [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
+- **Architecture Inspired by ANYmal (ETH-RSL)**: [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
 - **SKRL**: Wrapper for algorithms and agents. [Documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
 - **SB3**: Using it since SKRL is giving problems with DDPG. [Documentation](https://stable-baselines3.readthedocs.io/en/v1.0/guide/algos.html)
 - **Python + PyTorch**: Programming languages and framework for development and deep learning.
@@ -57,7 +57,15 @@ For a comprehensive understanding of the principles and techniques used in this 
 RL_Dog
 ├── Gymn_aliengo          # Envs and tasks for training using OpenAI Gym
 ├── Isaac_aliengo         # Envs and tasks for training using NVIDIA's Isaac Sim
-├── Policies              # Trained Policies
+│   ├── aliengo_DDPG          # DDPG try (SKRL)
+│   ├── aliengo_DDPG_SB3      # DDPG/TD3 try (Stable Baselines3)
+│   ├── aliengo_safety        # DDPG to try Safety
+│   ├── aliengo_vP            # Inherited from v1.1, not good
+│   ├── aliengo_vPaper_v2     # Ideal config stop
+│   ├── aliengo_vWalk_Ideal   # Ideal config walk
+│   ├── aliengo_vReal         # Real congif stop
+│   ├── aliengo_vWalk_Real    # Real config walk
+├── Policies              # Processed Trained Policies
 ├── assets                # Assets such as models and textures
 ├── isaaclab              # Just to access to Isaac Lab code, like if forked
 │   ├── isaaclab_assets
@@ -65,7 +73,6 @@ RL_Dog
 ├── runs                  # Logs and results from training runs
 ├── LICENSE
 ├── README.md
-├── SETUP_GUIDE.md        # Setup guide for the project
 ```
 
 ## Installation
@@ -78,7 +85,7 @@ To set up the project, follow these steps:
    ```
 3. Check that your assets (URDF, config) are installed locally, in your IsaacLab folder in isaaclab_assets directory.
 4. I am using Miniconda, be sure to change or use the same environment name.
-5. Launch the simulation (headless or not) with the scripts that you can find at the beginnning of each **main.py**
+5. Launch the simulation (headless or not) with the scripts that you can find at the beginning of each **main.py**
 
 ## Extra
 

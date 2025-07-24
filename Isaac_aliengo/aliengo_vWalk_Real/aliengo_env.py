@@ -286,26 +286,25 @@ class RewardsCfg:
     #     weight=-0.95,
     #     params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42}, # "target": 0.35         target not a param of base_pos_z
     # )
-    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-0.6)
-    # body_lin_acc_l2 = RewTerm(func=mdp.body_lin_acc_l2,  weight=-1.5)
+    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-0.3)
     
     # lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,     weight=-0.6)
     # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
     
     #### JOINTS PENALITIES
-    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.1)
-    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.06)
+    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.06)
+    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.08)
     #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
     
     # dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)
     # dof_acc_l2      = RewTerm(func=mdp.joint_acc_l2,      weight=-2.5e-6)
 
-    # action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.01)
+    #action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.005)
     
     # To eoncourage to lift the feet
     feet_air_time = RewTerm(
         func=mdp.feet_air_time,
-        weight=0.3,
+        weight=0.6,
         params={
             "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_calf"),
             "command_name": "base_velocity",
@@ -360,7 +359,8 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
         #self.sim.physics_material = self.scene.terrain.physics_material
 
         # viewer settings
-        self.viewer.eye = (5.0, 0.5, 2.0)
+        self.viewer.eye = (5.0, 0.5, 3.0)
+        self.viewer.resolution = (1280, 720)
 
         if HEIGHT_SCAN:
             if self.scene.height_scanner is not None:
