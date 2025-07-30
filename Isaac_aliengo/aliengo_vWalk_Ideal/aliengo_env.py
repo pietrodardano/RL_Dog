@@ -46,9 +46,9 @@ global HEIGHT_SCAN
 #Print IMU data in report_debug file
 DEBUG_IMU = False
 
-ROUGH_TERRAIN = 1
+ROUGH_TERRAIN = 0
 HEIGHT_SCAN = 1
-EPISODE_LENGTH = 20
+EPISODE_LENGTH = 12
 
 base_command = {}  # for keyboard inputs
 
@@ -311,8 +311,8 @@ class RewardsCfg:
     # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
     
     #### JOINTS PENALITIES
-    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.1)
-    #dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.01)
+    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.05)
+    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.02)
     #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
     
     # dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)

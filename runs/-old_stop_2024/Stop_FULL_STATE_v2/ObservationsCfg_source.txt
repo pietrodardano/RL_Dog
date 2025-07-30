@@ -1,0 +1,20 @@
+    @configclass
+    class PolicyCfg(ObsGroup):
+        """Observations for policy group."""
+
+        ### Command Input (What we requires to do)
+        #velocity_commands = ObsTerm(func=constant_commands)     # optional, is 0 
+        
+        ### Robot State (What we have)
+        base_lin_pos = ObsTerm(func=mdp.root_pos_w, noise=Unoise(n_min=-0.01, n_max=0.01))      # [m]
+        base_quat_pos = ObsTerm(func=mdp.root_quat_w, noise=Unoise(n_min=-0.02, n_max=0.02))    # [quaternion]
+        base_lin_vel = ObsTerm(func=mdp.root_lin_vel_w, noise=Unoise(n_min=-0.1, n_max=0.1))    # [m/s]
+        base_ang_vel = ObsTerm(func=mdp.root_ang_vel_w, noise=Unoise(n_min=-0.08, n_max=0.08))    # [rad/s]
+            
+        ### Joint state 
+        joint_pos = ObsTerm(func=mdp.joint_pos_rel, noise=Unoise(n_min=-0.02, n_max=0.02))      # [rad]
+        joint_vel = ObsTerm(func=mdp.joint_vel_rel, noise=Unoise(n_min=-0.04, n_max=0.04))      # [rad/s]
+
+        def __post_init__(self):
+            self.enable_corruption = True   # IDK
+            self.concatenate_terms = True   # IDK
