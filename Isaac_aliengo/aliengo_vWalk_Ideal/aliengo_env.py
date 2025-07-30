@@ -46,8 +46,9 @@ global HEIGHT_SCAN
 #Print IMU data in report_debug file
 DEBUG_IMU = False
 
-ROUGH_TERRAIN = 0
-HEIGHT_SCAN = 0
+ROUGH_TERRAIN = 1
+HEIGHT_SCAN = 1
+EPISODE_LENGTH = 20
 
 base_command = {}  # for keyboard inputs
 
@@ -94,10 +95,11 @@ class BaseSceneCfg(InteractiveSceneCfg):
     if HEIGHT_SCAN:
         height_scanner= RayCasterCfg(
             prim_path = "{ENV_REGEX_NS}/Robot/base",
-            offset = RayCasterCfg.OffsetCfg(pos=(0.0, 0.0, 10.0)),
-            attach_yaw_only = True,
-            pattern_cfg = patterns.GridPatternCfg(resolution=0.1, size=(1.0, 1.0)),
-            debug_vis= True,
+            offset = RayCasterCfg.OffsetCfg(pos=(0.0, 0.0, 20.0)),
+            #attach_yaw_only = True,
+            ray_alignment= "yaw",
+            pattern_cfg = patterns.GridPatternCfg(resolution=0.1, size=(1.5, 1.0)),
+            debug_vis= False,
             mesh_prim_paths = ["/World/ground"],
         )
 
@@ -131,14 +133,14 @@ class CommandsCfg:
 
     base_velocity = mdp.UniformVelocityCommandCfg( # inherits from CommandTermCfg
         asset_name="robot",
-        resampling_time_range=(0.0, 0.0),
+        resampling_time_range=(EPISODE_LENGTH/2, EPISODE_LENGTH),
         rel_standing_envs=0.02,
         rel_heading_envs=1.0,
         heading_command=True,
         heading_control_stiffness=0.5,
         debug_vis=True,
         ranges=mdp.UniformVelocityCommandCfg.Ranges(
-            lin_vel_x=(0.0, 1.5), lin_vel_y=(-0.4, 0.4), ang_vel_z=(-0.1, 0.1), heading=(0, 0)
+            lin_vel_x=(-1.0, 1.5), lin_vel_y=(-0.8, 0.8), ang_vel_z=(-0.8, 0.8), heading=(-math.pi, math.pi)
         ),
     )
 
@@ -190,29 +192,37 @@ class ObservationsCfg:
         velocity_command = ObsTerm(func=mdp.generated_commands, params={"command_name": "base_velocity"})
         
         # Ideal Observations (Sim only, no real)
-        base_height  = ObsTerm(func=mdp.base_pos_z, noise=Unoise(n_min=-0.008, n_max=0.008)) # ideal but still feasible with cameras/lidars, TOF
+        #base_height  = ObsTerm(func=mdp.base_pos_z, noise=Unoise(n_min=-0.008, n_max=0.008)) # ideal but still feasible with cameras/lidars, TOF
+        height_scan = ObsTerm(
+            func=mdp.height_scan,
+            params={"sensor_cfg": SceneEntityCfg("height_scanner")},
+            noise=Unoise(n_min=-0.1, n_max=0.1),
+            clip=(-1.0, 1.0),
+        )
+        
         body_lin_vel = ObsTerm(func=mdp.base_lin_vel, noise=Unoise(n_min=-0.05, n_max=0.05))  # IDEAL
         base_ang_vel = ObsTerm(func=mdp.base_ang_vel, noise=Unoise(n_min=-0.02, n_max=0.02))
         
-        projected_gravity = ObsTerm(
-            func=mdp.projected_gravity,
-            noise=Unoise(n_min=-0.05, n_max=0.05),
-        )
+        # THIS OR THE IMU (this is inside imu actually)
+        # projected_gravity = ObsTerm(
+        #     func=mdp.projected_gravity,
+        #     noise=Unoise(n_min=-0.05, n_max=0.05),
+        # )
         
         ### Robot State (What we have)
         #base_ang_vel = ObsTerm(func=mdp.base_ang_vel, noise=Unoise(n_min=-0.2, n_max=0.2))
-        # imu_like_data = ObsTerm(
-        #     func=imu_acc_b,
-        #     params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"])},
-        #     noise=Unoise(n_min=-0.08, n_max=0.08),
-        # )
+        imu_like_data = ObsTerm(
+            func=imu_acc_b,
+            params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"])},
+            noise=Unoise(n_min=-0.08, n_max=0.08),
+        )
             
         ### Joint state 
         joint_pos = ObsTerm(func=mdp.joint_pos_rel, noise=Unoise(n_min=-0.01, n_max=0.01))
         joint_vel = ObsTerm(func=mdp.joint_vel_rel, noise=Unoise(n_min=-0.06, n_max=0.06))
 
         actions   = ObsTerm(func=mdp.last_action)
-
+        
         def __post_init__(self):
             self.enable_corruption = True   # IDK
             self.concatenate_terms = True   # IDK
@@ -234,14 +244,14 @@ class EventCfg:
     )
     reset_random_joint = EventTerm(
         func=mdp.reset_joints_by_offset,
-        params={"position_range": (-0.15, 0.15), "velocity_range": (-0.05, 0.05)},
+        params={"position_range": (-0.5, 0.5), "velocity_range": (-0.05, 0.05)},
         mode="reset",
     )
     push_robot = EventTerm(
         func=mdp.push_by_setting_velocity,
         params={"velocity_range": {"x": (-0.5, 0.5), "y": (-0.5, 0.5), "z": (-0.05, 0.05)}},
         mode="interval",
-        interval_range_s=(0.2,2.0),
+        interval_range_s=(4.0,8.0),
     )
 
 
@@ -277,15 +287,15 @@ class RewardsCfg:
     """Reward terms for the MDP."""
                             ######## Positive weights: TRACKING the BASE Velocity (set to 0) ########
     track_lin_vel_xy_exp = RewTerm(
-        func=mdp.track_lin_vel_xy_exp, weight=5.0, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+        func=mdp.track_lin_vel_xy_exp, weight=3.0, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     track_ang_vel_z_exp = RewTerm(
-        func=mdp.track_ang_vel_z_exp, weight=0.4, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+        func=mdp.track_ang_vel_z_exp, weight=0.6, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     track_height = RewTerm(
         func=height_goal,
-        weight=2,
-        params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42, "allowance_radius": 0.03}, # "target": 0.35         target not a param of base_pos_z
+        weight=1.5,
+        params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42, "allowance_radius": 0.02}, # "target": 0.35         target not a param of base_pos_z
     )
 
     #### BODY PENALITIES
@@ -294,26 +304,26 @@ class RewardsCfg:
     #     weight=-0.95,
     #     params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42}, # "target": 0.35         target not a param of base_pos_z
     # )
-    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-0.5)
+    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-0.3)
     # body_lin_acc_l2 = RewTerm(func=mdp.body_lin_acc_l2,  weight=-1.5)
     
-    # lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,     weight=-0.6)
+    lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,     weight=-0.3)
     # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
     
     #### JOINTS PENALITIES
-    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.2)
-    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.1)
+    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.1)
+    #dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.01)
     #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
     
     # dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)
     # dof_acc_l2      = RewTerm(func=mdp.joint_acc_l2,      weight=-2.5e-6)
 
-    # action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.01)
+    action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.01)
     
     # To eoncourage to lift the feet
     feet_air_time = RewTerm(
         func=mdp.feet_air_time,
-        weight=0.25,
+        weight=0.15,
         params={
             "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_calf"),
             "command_name": "base_velocity",
@@ -364,11 +374,12 @@ class AliengoEnvCfg(ManagerBasedRLEnvCfg):   #MBEnv --> _init_, _del_, load_mana
         self.decimation = 4  # env decimation -> 50 Hz control
         self.sim.dt = 0.005  # simulation timestep -> 200 Hz physics
         self.sim.render_interval = self.decimation
-        self.episode_length_s = 3.0
+        self.episode_length_s = EPISODE_LENGTH
         #self.sim.physics_material = self.scene.terrain.physics_material
 
         # viewer settings
-        self.viewer.eye = (5.0, 0.5, 2.0)
+        self.viewer.eye = (9.0, 0.8, 5.0)
+        self.viewer.resolution = (1280, 720)
 
         if HEIGHT_SCAN:
             if self.scene.height_scanner is not None:
