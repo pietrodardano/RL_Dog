@@ -287,14 +287,14 @@ class RewardsCfg:
     """Reward terms for the MDP."""
                             ######## Positive weights: TRACKING the BASE Velocity (set to 0) ########
     track_lin_vel_xy_exp = RewTerm(
-        func=mdp.track_lin_vel_xy_exp, weight=3.0, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+        func=mdp.track_lin_vel_xy_exp, weight=4.0, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     track_ang_vel_z_exp = RewTerm(
         func=mdp.track_ang_vel_z_exp, weight=0.6, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
     )
     track_height = RewTerm(
         func=height_goal,
-        weight=1.5,
+        weight=2.0,
         params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42, "allowance_radius": 0.02}, # "target": 0.35         target not a param of base_pos_z
     )
 
@@ -311,14 +311,14 @@ class RewardsCfg:
     # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
     
     #### JOINTS PENALITIES
-    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.05)
-    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.02)
+    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.08)
+    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.03)
     #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
     
     # dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)
     # dof_acc_l2      = RewTerm(func=mdp.joint_acc_l2,      weight=-2.5e-6)
 
-    action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.01)
+    #action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.01)
     
     # To eoncourage to lift the feet
     feet_air_time = RewTerm(
