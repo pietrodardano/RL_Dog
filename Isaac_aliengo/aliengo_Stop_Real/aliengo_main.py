@@ -1,25 +1,21 @@
 """
-    This script demonstrates the environment for a quadruped robot AlienGo.
-
     --- HEADLESS: ---
     
     conda activate isaacenv
     cd
     cd IsaacLab/
     
-    ./isaaclab.sh -p /home/user/Documents/RL_Dog/Isaac_aliengo/aliengo_vWalk_Real/aliengo_main.py --num_envs 2056 --headless --enable_cameras
-
-    ./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_vWalk_Real/aliengo_main.py --num_envs 2056 --headless --enable_cameras
+    ./isaaclab.sh -p /home/user/Documents/RL_Dog/Isaac_aliengo/aliengo_Stop_Real/aliengo_main.py --num_envs 2056 --headless --enable_cameras
 
 """
 
 from isaaclab.app import AppLauncher
 
 import argparse
-parser = argparse.ArgumentParser(description='AlienGo_vP Env Config')
+parser = argparse.ArgumentParser(description='aliengo_Stop_Real Env Config')
 parser.add_argument('--num_envs',       type=int,       default=2056,              help='Number of environments')
 parser.add_argument('--env_spacing',    type=float,     default=2.5,               help='Environment spacing')
-parser.add_argument("--task",           type=str,       default="Aliengo_vWalk_Real",  help="Name of the task.")
+parser.add_argument("--task",           type=str,       default="aliengo_Stop_Real",  help="Name of the task.")
 
 parser.add_argument("--my_headless",       action="store_true",    default=True,    help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=True,    help="Record videos during training.")
@@ -55,7 +51,7 @@ def main():
     
     env_cfg = AliengoEnvCfg()
     env_cfg.scene.num_envs = args_cli.num_envs
-    env_cfg.viewer.resolution = (1280, 720) 
+    env_cfg.viewer.resolution = (640, 480)
     
     name_task = args_cli.task
     directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../runs")

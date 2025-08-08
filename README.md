@@ -18,13 +18,14 @@ Since the amount of example code for IsaacLab is still quite limited, this proje
 
 ## Methodology and Latest Updates
 - **Algorithms and Agents:**
-    - Proximal Policy Optimization (PPO)
-        - SKRL: Works
+    - Proximal Policy Optimization (PPO) 
+        - SKRL: Works ✅
     - Deep Deterministic Policy Gradient (DDPG)
-        - SKRL: To fix NaN generation
-        - SB3: To init and derive from TD3
+        - SKRL: To fix NaN generation ⚙
+        - SB3: To init and derive from TD3 ⚙
     - Twind_Delayed_DDPG (TD3)
-        - SB3: To fix and do first train
+        - SB3: To fix and do first train ⚙
+        
 - **Architecture Inspired by ANYmal (ETH-RSL)**: [ANYmal paper](https://www.science.org/doi/epdf/10.1126/scirobotics.aau5872).
 - **SKRL**: Wrapper for algorithms and agents. [Documentation](https://skrl.readthedocs.io/en/latest/intro/getting_started.html).
 - **SB3**: Using it since SKRL is giving problems with DDPG. [Documentation](https://stable-baselines3.readthedocs.io/en/v1.0/guide/algos.html)
@@ -56,14 +57,14 @@ For a comprehensive understanding of the principles and techniques used in this 
 ```
 RL_Dog
 ├── Isaac_aliengo         # Envs and tasks for training using NVIDIA's Isaac Sim
-│   ├── aliengo_DDPG          # DDPG try (SKRL)
-│   ├── aliengo_DDPG_SB3      # DDPG/TD3 try (Stable Baselines3)
-│   ├── aliengo_safety        # DDPG to try Safety
-│   ├── aliengo_vP            # Inherited from v1.1, not good
-│   ├── aliengo_vPaper_v2     # Ideal config stop
-│   ├── aliengo_vWalk_Ideal   # Ideal config walk
-│   ├── aliengo_vReal         # Real congif stop
-│   ├── aliengo_vWalk_Real    # Real config walk
+│   ├── aliengo_DDPG              # DDPG try (SKRL)
+│   ├── aliengo_DDPG_SB3          # DDPG/TD3 try (Stable Baselines3)
+│   ├── aliengo_safety            # DDPG to try Safety
+│   ├── aliengo_Stop_FullState    # Inherited from v1.1, not good
+│   ├── aliengo_Stop_FullState_2  # Ideal config stop
+│   ├── aliengo_Stop_Real         # Real congif stop
+│   ├── aliengo_Walk_Real         # Real config walk
+|   ├── aliengo_Walk_Ideal        # Ideal config walk
 ├── Policies              # Processed Trained Policies
 ├── assets                # Assets such as models and textures
 ├── isaaclab              # Just to access to Isaac Lab code, like if forked

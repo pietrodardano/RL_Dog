@@ -1,30 +1,25 @@
 """
-    This script demonstrates the environment for a quadruped robot AlienGo.
-
     --- HEADLESS: ---
     
     conda activate isaacenv
     cd
     cd IsaacLab/
     
-    ./isaaclab.sh -p /home/user/Documents/RL_Dog/Isaac_aliengo/aliengo_vPaper_v2/aliengo_main.py --num_envs 1028 --headless --enable_cameras
-
-    ./isaaclab.sh -p /home/robotac22/RL_Dog/Isaac_aliengo/aliengo_vPaper_v2/aliengo_main.py --num_envs 2056 --headless --enable_cameras
-
+    ./isaaclab.sh -p /home/user/Documents/RL_Dog/Isaac_aliengo/aliengo_Walk_Real/aliengo_main.py --num_envs 2056 --headless --enable_cameras
 """
 
 from isaaclab.app import AppLauncher
 
 import argparse
-parser = argparse.ArgumentParser(description='AlienGo_vP Env Config')
+parser = argparse.ArgumentParser(description='Aliengo_Walk_Real Env Config')
 parser.add_argument('--num_envs',       type=int,       default=2056,              help='Number of environments')
 parser.add_argument('--env_spacing',    type=float,     default=2.5,               help='Environment spacing')
-parser.add_argument("--task",           type=str,       default="AlienGo_vPaper25",  help="Name of the task.")
+parser.add_argument("--task",           type=str,       default="Aliengo_Walk_Real",  help="Name of the task.")
 
 parser.add_argument("--my_headless",       action="store_true",    default=True,    help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=True,    help="Record videos during training.")
-parser.add_argument("--video_length",   type=int,               default=500,     help="Length of the recorded video (in steps).")
-parser.add_argument("--video_interval", type=int,               default=6000,   help="Interval between video recordings (in steps).")
+parser.add_argument("--video_length",   type=int,               default=600,     help="Length of the recorded video (in steps).")
+parser.add_argument("--video_interval", type=int,               default=15000,   help="Interval between video recordings (in steps).")
 
 ### Launch IsaacSim ###
 AppLauncher.add_app_launcher_args(parser)
@@ -55,7 +50,7 @@ def main():
     
     env_cfg = AliengoEnvCfg()
     env_cfg.scene.num_envs = args_cli.num_envs
-    env_cfg.viewer.resolution = (640, 480)
+    env_cfg.viewer.resolution = (1280, 720) 
     
     name_task = args_cli.task
     directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../runs")
@@ -75,6 +70,7 @@ def main():
             print(Fore.GREEN + "[ALIENGO-INFO] Recording videos during training." + Style.RESET_ALL)
             print_dict(video_kwargs, nesting=4)
             env = gym.wrappers.RecordVideo(env, **video_kwargs)
+            env.num_envs = args_cli.num_envs  # Ensure the number of environments is set correctly
         else:
             env = ManagerBasedRLEnv(cfg=env_cfg)
             
@@ -87,7 +83,7 @@ def main():
     agent = PPO_aliengo(env=env, device=device, name=name_task, directory=log_dir, verbose=1) # SKRL_env_WRAPPER inside
     print(Fore.GREEN + '[ALIENGO-INFO] Start training' + Style.RESET_ALL)
 
-    agent.train_sequential(timesteps=14000, headless=args_cli.my_headless)
+    agent.train_sequential(timesteps=31000, headless=args_cli.my_headless)
     env.close()
     
 if __name__ == "__main__":

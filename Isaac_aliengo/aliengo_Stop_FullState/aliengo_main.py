@@ -1,26 +1,11 @@
 """
-This script demonstrates the environment for a quadruped robot AlienGo.
-
-    conda activate isaacenv_
-    cd
-    cd IsaacLab_
-    ./isaaclab.sh -p /home/rl_sim/RL_Dog/IsaacLab_v1_1/aliengo_vP/aliengo_main.py --num_envs 512
-
     #IF HEADLESS:
-    conda activate isaacenv_
-    cd
-    cd IsaacLab_
-    ./isaaclab.sh -p /home/rl_sim/RL_Dog/IsaacLab_v1_1/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
     
     conda activate isaacenv
     cd
     cd IsaacLab/
 
-    ./isaaclab.sh -p /home/robotac22/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
-
-    ./isaaclab.sh -p /home/user/Documents/RL_Dog/IsaacLab_v2_2/aliengo_vP/aliengo_main.py --num_envs 4096 --headless --enable_cameras
-
-
+    ./isaaclab.sh -p /home/user/Documents/RL_Dog/IsaacLab_v2_2/aliengo_Stop_FullState/aliengo_main.py --num_envs 4096 --headless --enable_cameras
 
 Launch Isaac Sim Simulator first.
 """
@@ -30,11 +15,11 @@ HEADLESS = 1
 from isaaclab.app import AppLauncher
 
 import argparse
-parser = argparse.ArgumentParser(description='AlienGo_vP Environment Configuration')
+parser = argparse.ArgumentParser(description='AlienGo_S_FS Environment Configuration')
 parser.add_argument('--num_envs',       type=int,   default=1028,          help='Number of environments')
 parser.add_argument('--env_spacing',    type=float, default=2.5,           help='Environment spacing')
 parser.add_argument('--walk',           type=int,   default=0,             help='ask to Walk or not (1,0)')
-parser.add_argument("--task",           type=str,   default="AlienGo-v0",  help="Name of the task.")
+parser.add_argument("--task",           type=str,   default="AlienGo_S_FS",  help="Name of the task.")
 
 #parser.add_argument("--headless",       action="store_true",    default=True,      help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=HEADLESS,  help="Record videos during training.")
