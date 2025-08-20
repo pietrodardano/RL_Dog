@@ -65,12 +65,11 @@ RL_Dog
 │   ├── aliengo_Stop_Real         # Real congif stop
 │   ├── aliengo_Walk_Real         # Real config walk
 |   ├── aliengo_Walk_Ideal        # Ideal config walk
-├── Policies              # Processed Trained Policies
 ├── assets                # Assets such as models and textures
-├── isaaclab              # Just to access to Isaac Lab code, like if forked
-│   ├── isaaclab_assets
-│   ├── isaaclab_tasks
-├── runs                  # Logs, results & checkpoints from training runs
+├── isaaclab              # Just to access IsaacLab code, like if forked
+├── isaaclab_assets       # Just to access IsaacLab code, like if forked
+├── isaaclab_tasks        # Just to access IsaacLab code, like if forked
+├── runs                  # Logs, results & checkpoints from trainings
 ├── LICENSE
 ├── README.md
 ```
