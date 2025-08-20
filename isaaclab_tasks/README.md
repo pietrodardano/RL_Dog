@@ -4,7 +4,7 @@
 
 ## Purpose
 
-This directory holds a local copy of the **IsaacSim source code** to make it easier to:
+This directory holds a copy of the **IsaacSim source code** to make it easier to:
 
 - Browse and explore IsaacSim internals.
 - Use IDE features like **Ctrl+Click** to jump to function and class definitions.
