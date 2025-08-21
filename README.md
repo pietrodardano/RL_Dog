@@ -36,23 +36,6 @@ Since the amount of example code for IsaacLab is still quite limited, this proje
 - **main**: Currently mantained and working code: IsaacSim 4.5, IsaacLab 2.1.0
 - **IsaacLab_v1.1**: Code from summer 2024, Legacy versions: IsaacSim 4.1, IsaacLab 1.1.0
 
-## Configs: 
-#### Nvidia & CUDA: Driver Version: 570.124.06 | CUDA Version: 12.8 
-#### If Nvidia Blackwell: Driver 570.133.20 server-open (!!) | CUDA Version 12.8
-
-| WorkStation    | CPU                        | GPU                                         | RAM    | OS                   |
-|--------------- |--------------------------- |---------------------------------------------|--------|----------------------|
-| WS 1  | AMD® Ryzen 9 7950x         | 2x NVIDIA RTX A6000 Ada Gen, 48Gb GDDR6, 300W | 192Gb  | Ubuntu 22.04.4 LTS   |
-| WS 2  | Intel Xeon(R) Gold 6226R   | NVIDIA RTX A6000, 48Gb GDDR6, 300W           | 128Gb  | Ubuntu 20.04 LTS     |
-| WS 3  | Intel Xeon(R) Gold 5415+   | NVIDIA RTX A4000, 14Gb GDDR6, 140W           | 128Gb  | Ubuntu 20.04 LTS     |
-| WS 4 📌 | AMD® Ryzen Thrd.rip 7970x  | NVIDIA RTX PRO Blackwell A6000, 96GB GDDR7   | 128Gb  | Ubuntu 22.04.4 LTS   |
-
-## Understanding the Project
-
-For a comprehensive understanding of the principles and techniques used in this project, refer to the following resources:
-- A detailed review of related methodologies can be found in [reference 1](https://journals.sagepub.com/doi/full/10.1177/17298814211007305).
-- Insights into recent advancements are discussed in [reference 2](https://arxiv.org/html/2308.12517v2).
-
 ## Project Structure
 ```
 RL_Dog
@@ -62,17 +45,55 @@ RL_Dog
 │   ├── aliengo_safety            # DDPG to try Safety
 │   ├── aliengo_Stop_FullState    # Inherited from v1.1, not good
 │   ├── aliengo_Stop_FullState_2  # Ideal config stop
-│   ├── aliengo_Stop_Real         # Real congif stop
+│   ├── aliengo_Stop_Real         # Real config stop
 │   ├── aliengo_Walk_Real         # Real config walk
-|   ├── aliengo_Walk_Ideal        # Ideal config walk
+│   ├── aliengo_Walk_Ideal        # Ideal config walk
 ├── assets                # Assets such as models and textures
 ├── isaaclab              # Just to access IsaacLab code, like if forked
 ├── isaaclab_assets       # Just to access IsaacLab code, like if forked
 ├── isaaclab_tasks        # Just to access IsaacLab code, like if forked
 ├── runs                  # Logs, results & checkpoints from trainings
+├── configs.py            # Config file for training and environment setup
+├── run_training.py       # Script to launch training sessions
+├── run_training.sh       # Shell script to run trainings
+├── TRAINING_GUIDE.md     # How to run trainings
 ├── LICENSE
 ├── README.md
 ```
+
+## Train and Play
+
+For detailed instructions on training the agent, see the [TRAINING_GUIDE.md](TRAINING_GUIDE.md).
+
+### Agent Status
+- **PPO-based agents**: Fully implemented, tested, and ready for training and deployment. ✅  
+- **DDPG and TD3 agents**: Currently under development and undergoing refinement. ⚙  
+
+### Running the Simulation
+The simulation is a work in progress.  
+*(As of August 2025: Full implementation is planned for completion by the end of the year, as it is not the current focus.)*
+
+## System Configurations
+
+### Nvidia & CUDA
+- **Driver Version**: 570.124.06  
+- **CUDA Version**: 12.8  
+- **For Nvidia Blackwell**: Driver 570.133.20 (server-open) | CUDA Version 12.8  
+
+### Workstation Specifications
+
+| Workstation    | CPU                        | GPU                                         | RAM    | OS                   |
+|----------------|----------------------------|---------------------------------------------|--------|----------------------|
+| **WS 1**       | AMD® Ryzen 9 7950x         | 2x NVIDIA RTX A6000 Ada Gen, 48GB GDDR6, 300W | 192GB  | Ubuntu 22.04.4 LTS   |
+| **WS 2**       | Intel Xeon® Gold 6226R     | NVIDIA RTX A6000, 48GB GDDR6, 300W          | 128GB  | Ubuntu 20.04 LTS     |
+| **WS 3**       | Intel Xeon® Gold 5415+     | NVIDIA RTX A4000, 14GB GDDR6, 140W          | 128GB  | Ubuntu 20.04 LTS     |
+| **WS 4** 📌    | AMD® Ryzen Threadripper 7970x | NVIDIA RTX PRO Blackwell A6000, 96GB GDDR7 | 128GB  | Ubuntu 22.04.4 LTS   |
+
+## Understanding the Project
+
+For a comprehensive understanding of the principles and techniques used in this project, refer to the following resources:
+- A detailed review of related methodologies can be found in [reference 1](https://journals.sagepub.com/doi/full/10.1177/17298814211007305).
+- Insights into recent advancements are discussed in [reference 2](https://arxiv.org/html/2308.12517v2).
 
 ## Installation
 

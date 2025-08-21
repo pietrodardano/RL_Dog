@@ -1,6 +1,7 @@
-
 import math
 import torch
+
+from config import *
 
 from isaaclab.envs     import ManagerBasedEnv, ManagerBasedEnvCfg, ManagerBasedRLEnv, ManagerBasedRLEnvCfg
 from isaaclab.assets   import ArticulationCfg, AssetBaseCfg
@@ -121,15 +122,9 @@ class ActionsCfg:
 
 ### COMANDS ###
 
-def constant_commands(env: ManagerBasedEnv) -> torch.Tensor:
-    """Generated command"""
-    tensor_lst =  torch.tensor([0.0, 0.0, 0.0], device=env.device).repeat(env.num_envs, 1)
-    return tensor_lst
-
-
 @configclass
 class CommandsCfg:
-    """Command terms for the MDP."""   # ASKING TO HAVE 0 Velocity
+    """Command terms for the MDP."""
 
     base_velocity = mdp.UniformVelocityCommandCfg( # inherits from CommandTermCfg
         asset_name="robot",
@@ -168,7 +163,7 @@ def imu_acc_b(env: ManagerBasedEnv, asset_cfg: SceneEntityCfg) -> torch.Tensor:
     body_acc_b = math_utils.quat_apply_inverse(asset.data.root_quat_w, body_acc_w.view(num_envs, 3))
 
     if DEBUG_IMU:
-        with open("/home/rl_sim/RL_Dog/report_debug/gravity.txt", 'a') as log_file:
+        with open(f"{REPORT_DEBUG_DIR}/gravity.txt", 'a') as log_file:
             projected_gravity_b = asset.data.projected_gravity_b
             imu = body_acc_b + projected_gravity_b*9.81
             #log_file.write(f"BodyAccW-> {body_acc_w}\n")
@@ -188,7 +183,6 @@ class ObservationsCfg:
         """Observations for policy group."""
 
         ### Command Input (What we requires to do)
-        #velocity_commands = ObsTerm(func=constant_commands)
         velocity_command = ObsTerm(func=mdp.generated_commands, params={"command_name": "base_velocity"})
         
         # Ideal Observations (Sim only, no real)
@@ -311,8 +305,8 @@ class RewardsCfg:
     # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
     
     #### JOINTS PENALITIES
-    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.08)
-    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.03)
+    dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.03)
+    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.01)
     #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
     
     # dof_torques_l2  = RewTerm(func=mdp.joint_torques_l2,  weight=-1.0e-5)
@@ -323,7 +317,7 @@ class RewardsCfg:
     # To eoncourage to lift the feet
     feet_air_time = RewTerm(
         func=mdp.feet_air_time,
-        weight=0.15,
+        weight=0.2,
         params={
             "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_calf"),
             "command_name": "base_velocity",

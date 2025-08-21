@@ -1,6 +1,7 @@
-
 import math
 import torch
+
+from config import *
 
 from isaaclab.envs     import ManagerBasedEnv, ManagerBasedEnvCfg, ManagerBasedRLEnv, ManagerBasedRLEnvCfg
 from isaaclab.assets   import ArticulationCfg, AssetBaseCfg
@@ -166,7 +167,7 @@ def imu_acc_b(env: ManagerBasedEnv, asset_cfg: SceneEntityCfg) -> torch.Tensor:
     body_acc_b = math_utils.quat_apply_inverse(asset.data.root_quat_w, body_acc_w.view(num_envs, 3))
 
     if DEBUG_IMU:
-        with open("/home/rl_sim/RL_Dog/report_debug/gravity.txt", 'a') as log_file:
+        with open(f"{REPORT_DEBUG_DIR}/gravity.txt", 'a') as log_file:
             projected_gravity_b = asset.data.projected_gravity_b
             imu = body_acc_b + projected_gravity_b*9.81
             #log_file.write(f"BodyAccW-> {body_acc_w}\n")
