@@ -1,0 +1,9 @@
+# **/*.pt
+**/*.meta.json
+# **/*.mp4
+# **/*.txt
+../*.pyc
+**/*.pyc
+*.pyc
+__pycache__/
+*.pyo

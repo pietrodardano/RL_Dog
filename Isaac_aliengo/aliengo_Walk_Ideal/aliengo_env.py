@@ -295,13 +295,13 @@ class RewardsCfg:
     #### BODY PENALITIES
     # base_height_l2 = RewTerm(
     #     func=mdp.base_height_l2,
-    #     weight=-0.95,
+    #     weight=-2,
     #     params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"]), "target_height": 0.42}, # "target": 0.35         target not a param of base_pos_z
     # )
-    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-0.3)
+    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-0.08)
     # body_lin_acc_l2 = RewTerm(func=mdp.body_lin_acc_l2,  weight=-1.5)
     
-    lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,     weight=-0.3)
+    # lin_vel_z_l2    = RewTerm(func=mdp.lin_vel_z_l2,     weight=-0.1)
     # ang_vel_xy_l2   = RewTerm(func=mdp.ang_vel_xy_l2,    weight=-0.4)
     
     #### JOINTS PENALITIES
@@ -317,7 +317,7 @@ class RewardsCfg:
     # To eoncourage to lift the feet
     feet_air_time = RewTerm(
         func=mdp.feet_air_time,
-        weight=0.2,
+        weight=0.15,
         params={
             "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*_calf"),
             "command_name": "base_velocity",
