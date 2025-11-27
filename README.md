@@ -14,6 +14,8 @@ Project by Pietro Dardano, advised by prof. [A. Del Prete](https://andreadelpret
 
 Since the amount of example code for IsaacLab is still quite limited, this project can be seen as and example (even if still work in progress) on how to create Manager_Based_RL_Envs with different algorithms.
 
+Remark: The available public code does **not** include the Safety and Robust features for harsh terrains!
+
 #### If you find it useful, please consider giving a star to the repository. :smile: :star:
 
 ## Methodology and Latest Updates
