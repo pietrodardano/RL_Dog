@@ -88,7 +88,7 @@ class BaseSceneCfg(InteractiveSceneCfg):
     # ROBOT
     robot: ArticulationCfg = AliengoCFG_Black.replace(prim_path="{ENV_REGEX_NS}/Robot")
 
-    # SENSORS (virtual ones, the real robot does not has thm) 
+    # SENSORS (virtual ones, the real robot does not has them) 
     contact_forces = ContactSensorCfg(prim_path="{ENV_REGEX_NS}/Robot/.*", history_length=3, track_air_time=True)
 
     # HEIGHT SCAN (robot does not has it, however in sim can lean to a faster training)
@@ -194,7 +194,7 @@ class ObservationsCfg:
         imu_like_data = ObsTerm(
             func=imu_acc_b,
             params={"asset_cfg": SceneEntityCfg("robot", body_names=["base"])},
-            noise=Unoise(n_min=-0.08, n_max=0.08),
+            noise=Unoise(n_min=-0.1, n_max=0.1),
         )
             
         ### Joint state 
@@ -218,8 +218,8 @@ class EventCfg:
     reset_scene = EventTerm(
         func=mdp.reset_root_state_uniform,
         params={"pose_range": {"x": (-0.1, 0.0), "z": (-0.34, 0.12), # it was z(-0.22, 12)
-                               "roll": (-0.1, 0.1), "pitch": (-0.1, 0.1),}, #cancel if want it planar
-                "velocity_range": {"x": (-0.4, 1.0), "y": (-0.08, 0.08)},}, 
+                               "roll": (-0.24, 0.24), "pitch": (-0.24, 0.24),}, # 0.1 original
+                "velocity_range": {"x": (-0.4, 1.0), "y": (-0.16, 0.16)},},  # y original 0.08
         mode="reset",
     )
     reset_random_joint = EventTerm(
@@ -229,9 +229,9 @@ class EventCfg:
     )
     push_robot = EventTerm(
         func=mdp.push_by_setting_velocity,
-        params={"velocity_range": {"x": (-0.5, 0.5), "y": (-0.5, 0.5), "z": (-0.05, 0.05)}},
+        params={"velocity_range": {"x": (-0.8, 0.8), "y": (-0.8, 0.8), "z": (-0.1, 0.1)}},
         mode="interval",
-        interval_range_s=(0.2,2.0),
+        interval_range_s=(0.15,2.0),
     )
 
 
@@ -292,8 +292,8 @@ class RewardsCfg:
     
     #### JOINTS PENALITIES
     dof_pos_limits  = RewTerm(func=mdp.joint_pos_limits,  weight=-0.6)
-    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.8)
-    #dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
+    dof_pos_dev     = RewTerm(func=mdp.joint_deviation_l1, weight=-0.81)
+    dof_vel_l2      = RewTerm(func=mdp.joint_vel_l2,       weight=-0.001)
 
     #action_rate_l2  = RewTerm(func=mdp.action_rate_l2,   weight=-0.01)
 

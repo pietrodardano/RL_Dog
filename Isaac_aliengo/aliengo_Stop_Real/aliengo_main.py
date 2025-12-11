@@ -17,7 +17,7 @@ parser.add_argument('--num_envs',       type=int,       default=2056,           
 parser.add_argument('--env_spacing',    type=float,     default=2.5,               help='Environment spacing')
 parser.add_argument("--task",           type=str,       default="aliengo_Stop_Real",  help="Name of the task.")
 
-parser.add_argument("--my_headless",       action="store_true",    default=True,    help="GUI or not GUI.")
+parser.add_argument("--my_headless",    action="store_true",    default=True,    help="GUI or not GUI.")
 parser.add_argument("--video",          action="store_true",    default=True,    help="Record videos during training.")
 parser.add_argument("--video_length",   type=int,               default=600,     help="Length of the recorded video (in steps).")
 parser.add_argument("--video_interval", type=int,               default=15000,   help="Interval between video recordings (in steps).")
@@ -54,12 +54,12 @@ def main():
     env_cfg.viewer.resolution = (640, 480)
     
     name_task = args_cli.task
-    directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../runs")
+    directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../runs/Stop_Real_Planar")
     
     try:
         if args_cli.video:
             env = gym.make(args_cli.task, cfg=env_cfg, render_mode="rgb_array" if args_cli.video else None)
-            timestamp = datetime.datetime.now().strftime("%d_%m_%H:%M")
+            timestamp = datetime.datetime.now().strftime("%d_%m")
             log_dir = f"{directory}/{name_task}_{timestamp}/"
             os.makedirs(log_dir, exist_ok=True)
             video_kwargs = {

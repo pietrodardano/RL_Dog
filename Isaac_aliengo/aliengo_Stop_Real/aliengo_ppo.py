@@ -110,7 +110,7 @@ class PPO_aliengo:
             "learning_epochs": 6,           # no more than 12
             "mini_batches": 4,              # min(mem_size * batch_dim / 48, 2)   # 48Gb VRAM of the RTX A6000
             "lambda": 0.95,                 # GAE, Generalized Advantage Estimation: bias and variance balance
-            "discount_factor": 0.98,       # ~1 Long Term, ~0 Short Term Rewards | Standard: 0.99
+            "discount_factor": 0.975,       # ~1 Long Term, ~0 Short Term Rewards | Standard: 0.99
             "entropy_loss_scale": 0.004,    # Entropy Loss: Exploration~1, Eploitation~0 | Standard: [0.0, 0.006]
             "learning_rate": 5e-4,
             "learning_rate_scheduler": KLAdaptiveRL,
