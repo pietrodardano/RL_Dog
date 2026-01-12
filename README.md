@@ -17,6 +17,15 @@ Since the amount of example code for IsaacLab is still quite limited, this proje
 Remark: The available public code does **not** include the Safety and Robust features for harsh terrains!
 
 #### If you find it useful, please consider giving a star to the repository. :smile: :star:
+<p align="center">
+    <img src="contents/image.png" alt="alt text" width="500"/>
+</p>
+
+### Update 2026: I have started a new open-project on robot manipulation using UR5e and FR3 robots in IsaacLab and Mujoco: [`RL_Arm`](https://github.com/pietrodardano/RL_Arm). :star:
+<p align="center">
+    Feel free to check it out—contributions are very welcome!
+</p>
+
 
 ## Methodology and Latest Updates
 - **Algorithms and Agents:**
